@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--card-bg);
+}
+
+.section_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.section_title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.primary_content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface-subtle);
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+}
+
+.primary_filename {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.primary_url {
+    flex: 1;
+    font-size: 12px;
+    color: var(--color-1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.empty_state {
+    text-align: center;
+    padding: 24px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.attachment_row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+}
+
+.attachment_name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.add_buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.url_input_hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}

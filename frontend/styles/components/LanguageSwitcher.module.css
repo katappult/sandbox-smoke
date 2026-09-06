@@ -1,0 +1,61 @@
+.button {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: var(--medium);
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flagIcon {
+    font-size: 18px;
+    margin-right: 5px;
+    line-height: 1;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    padding: 10px;
+
+}
+
+.menuItemContent {
+    display: flex;
+    align-items: center;
+}
+
+.radioIcon {
+    font-size: var(--large-big);
+    color: #FFFFFF;
+    height: 13px;
+}
+
+.langText {
+    color: var(--color-1);
+}
+
+.flagEmoji {
+    font-size: 18px;
+    margin-right: 8px;
+    line-height: 1;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.checkMark {
+    margin-left: auto;
+    padding-left: 12px;
+    color: var(--color-1);
+    font-weight: bold;
+}
