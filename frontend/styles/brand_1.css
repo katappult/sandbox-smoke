@@ -1,0 +1,506 @@
+/* ── Non-theme variables (spacing, typography scale, borders, etc.)
+   Colors and font are injected by _document.js from styles/themes/index.js
+──────────────────────────────────────────────────────────────────────── */
+:root {
+    --text-light-pri: #070707;
+    --text-light-sec: #070707B2;
+    --text-light-dis: #0707074D;
+    --text-dark-pri: #F9F8F8;
+    --text-dark-sec: #F9F8F8B2;
+    --text-dark-dis: #F9F8F84D;
+
+    --white: #FFFFFF;
+    --white2: #f5f5f5;
+    --black: #333;
+    --soft-gray: #dedede;
+
+    --footer-text-color: white;
+    --tags-black-color: #333;
+    --save-the-live-color: white;
+    --input-text-color: #070707;
+    --primary-button-text-color: #FFFFFF;
+
+    --small: 10px;
+    --caption: 12px;
+    --text-para: 14px;
+    --text-label: 16px;
+    --text-featured: 22px;
+    --section-title: 32px;
+    --heading3: 48px;
+    --heading1: 72px;
+    --large: 30px;
+    --xsmall: 8px;
+    --text-large: 18px;
+
+    /* ── Font-size scale — overridden by applyFontSize() ── */
+    --fs-xs:   11px;
+    --fs-sm:   13px;
+    --fs-base: 14px;
+    --fs-md:   16px;
+
+    --border-color-1: rgba(208, 213, 221, 1);
+    --border-color-2: rgba(242, 244, 247, 1);
+    --border-color-3: rgb(208, 214, 232);
+    --border-color-4: rgba(77, 79, 86, 1);
+    --border-color-5: #0707071a;
+    --border-color-6: #bdbdbd;
+
+    /* border-radius — injectés par buildThemeCSS() depuis styles/themes/index.js */
+    --border-color: #dddddd;
+
+    /* ── Semantic tokens — dark-mode override-ready ── */
+    /* --card-bg suit automatiquement --content-bg (défini par le thème/mode) */
+    --card-bg:        var(--content-bg);
+    --card-border:    #EAECF0;
+    --input-bg:       var(--content-bg);
+    --input-border:   #d0d5dd;
+    --surface-hover:  #f2f4f7;
+    --surface-subtle: #f9fafc;
+
+    --text-primary:   #101828;
+    --text-secondary: #667085;
+    --text-tertiary:  #344054;
+    --text-muted:     #98a2b3;
+
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+html{
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ── react-phone-number-input overrides ── */
+.PhoneInput {
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-input);
+    padding: 0 12px;
+    height: 40px;
+    background: var(--input-bg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.PhoneInput:focus-within {
+    border-color: var(--color-1);
+    box-shadow: 0 0 0 3px var(--opacity-10-color-1);
+}
+.PhoneInputInput {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    font-size: 14px;
+    color: var(--text-primary);
+    flex: 1;
+    height: 100%;
+}
+.PhoneInputCountrySelect {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+.PhoneInputCountry {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-right: 8px;
+    border-right: 1px solid var(--input-border);
+    margin-right: 4px;
+    background: transparent;
+}
+.PhoneInputCountryIcon {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.PhoneInputCountryIcon--border {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* ── Ant Design Menu — Stitch / MD3 nav item style ── */
+/* Supprime l'indicateur de sélection (barre bleue à droite) */
+.ant-menu-light .ant-menu-item-selected::after,
+.ant-menu-light .ant-menu-submenu-selected::after {
+    display: none !important;
+}
+/* Item sélectionné : fond secondary-container (#d9e3f8), texte primary (#002045), pill arrondi */
+.ant-menu-light .ant-menu-item-selected {
+    background-color: #d9e3f8 !important;
+    color: #002045 !important;
+    border-radius: 8px !important;
+    font-weight: 600;
+}
+/* Hover : fond surface-container-low */
+.ant-menu-light .ant-menu-item:not(.ant-menu-item-selected):hover {
+    background-color: #f2f4f6 !important;
+    color: #002045 !important;
+    border-radius: 8px !important;
+}
+/* Empêche Ant de surcharger la couleur du texte sélectionné */
+.ant-menu-light .ant-menu-item-selected .ant-menu-title-content,
+.ant-menu-light .ant-menu-item-selected > span {
+    color: #FFFFFF !important;
+}
+.PhoneInputCountrySelectArrow {
+    color: var(--text-muted);
+}
+
+body{
+    padding: 0;
+    margin: 0;
+
+    font-size: var(--app-font-size, 14px);
+    background-color: var(--layout-bg, #eef0f3);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    overflow:hidden;
+    font-family: var(--font-family), serif;
+}
+
+/* ── Inputs globaux — couleur et fond suivent le mode ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+select {
+    color: var(--text-primary);
+    background-color: var(--input-bg);
+}
+
+/* ── Ant Design dark-mode overrides ── */
+
+/* Input / Textarea */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-input-password {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+    border-radius: var(--radius-input) !important;
+}
+.ant-input::placeholder,
+.ant-input-affix-wrapper input::placeholder {
+    color: var(--text-muted) !important;
+}
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+    border-color: var(--color-1) !important;
+    box-shadow: 0 0 0 2px var(--opacity-10-color-1) !important;
+}
+.ant-input-affix-wrapper .ant-input {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ── Autofill — override browser yellow background ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+    box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    caret-color: var(--text-primary);
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Form labels */
+.ant-form-item-label > label {
+    color: var(--text-tertiary) !important;
+}
+.ant-form-item-label > label.ant-form-item-required::before {
+    color: #d92d20 !important;
+}
+.ant-form-item-explain-error {
+    color: #d92d20 !important;
+}
+
+/* Typography */
+.ant-typography,
+h1.ant-typography, h2.ant-typography, h3.ant-typography,
+h4.ant-typography, h5.ant-typography {
+    color: var(--text-primary) !important;
+}
+
+/* Select */
+.ant-select-selector {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+}
+.ant-select-selection-item,
+.ant-select-selection-placeholder,
+.ant-select-arrow {
+    color: var(--text-primary) !important;
+}
+.ant-select-dropdown {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+}
+.ant-select-item {
+    color: var(--text-primary) !important;
+}
+.ant-select-item-option-active,
+.ant-select-item-option:hover {
+    background-color: var(--surface-hover) !important;
+}
+.ant-select-item-option-selected {
+    background-color: var(--opacity-10-color-1) !important;
+}
+
+/* Table */
+.ant-table {
+    background: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+.ant-table-thead > tr > th,
+.ant-table-wrapper .ant-table-thead > tr > th {
+    background: var(--card-bg) !important;
+    color: var(--text-secondary) !important;
+    border-bottom-color: var(--card-border) !important;
+}
+.ant-table-thead > tr > th::before,
+.ant-table-wrapper .ant-table-thead > tr > th::before {
+    background-color: var(--card-border) !important;
+    width: 1px !important;
+    opacity: 0.4;
+}
+.ant-table-tbody > tr > td {
+    color: var(--text-primary) !important;
+    border-bottom-color: var(--card-border) !important;
+}
+.ant-table-tbody > tr:hover > td,
+.ant-table-tbody > tr.ant-table-row:hover > td {
+    background: var(--surface-hover) !important;
+}
+.ant-table-content,
+.ant-table-container {
+    background: var(--card-bg) !important;
+}
+.ant-table-wrapper .ant-pagination {
+    color: var(--text-primary) !important;
+}
+.ant-pagination-item a {
+    color: var(--text-primary) !important;
+}
+.ant-pagination-item {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+}
+.ant-pagination-prev button,
+.ant-pagination-next button {
+    background: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--card-border) !important;
+}
+.ant-pagination-item:hover {
+    border-color: var(--color-1) !important;
+}
+.ant-pagination-item:hover a {
+    color: var(--color-1) !important;
+}
+.ant-pagination-item-active {
+    background: var(--color-1) !important;
+    border-color: var(--color-1) !important;
+}
+.ant-pagination-item-active a {
+    color: #fff !important;
+}
+.ant-pagination-total-text {
+    color: var(--text-primary) !important;
+    font-size: 13px;
+    margin-right: auto;
+}
+.ant-pagination-prev:hover button,
+.ant-pagination-next:hover button {
+    border-color: var(--color-1) !important;
+    color: var(--color-1) !important;
+}
+.ant-pagination-disabled button,
+.ant-pagination-disabled:hover button {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Modal */
+.ant-modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+.ant-modal-header {
+    background-color: var(--card-bg) !important;
+    border-bottom-color: var(--card-border) !important;
+}
+.ant-modal-title {
+    color: var(--text-primary) !important;
+}
+.ant-modal-close {
+    color: var(--text-muted) !important;
+}
+.ant-modal-close:hover {
+    color: var(--text-primary) !important;
+    background: var(--surface-hover) !important;
+}
+.ant-modal-footer {
+    border-top-color: var(--card-border) !important;
+}
+
+/* Drawer */
+.ant-drawer-content,
+.ant-drawer-body {
+    background-color: var(--content-bg) !important;
+    color: var(--text-primary) !important;
+}
+.ant-drawer-header {
+    background-color: var(--content-bg) !important;
+    border-bottom-color: var(--card-border) !important;
+}
+.ant-drawer-title {
+    color: var(--text-primary) !important;
+}
+.ant-drawer-close {
+    color: var(--text-muted) !important;
+}
+.ant-drawer-close:hover {
+    color: var(--text-primary) !important;
+    background: var(--surface-hover) !important;
+}
+
+/* Ant Design Button — default variant */
+.ant-btn-default {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--card-border) !important;
+}
+.ant-btn-default:hover {
+    background-color: var(--surface-hover) !important;
+    color: var(--color-1) !important;
+    border-color: var(--color-1) !important;
+}
+
+/* Card */
+.ant-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+.ant-card-body {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Tabs */
+.ant-tabs-tab {
+    color: var(--text-secondary) !important;
+}
+.ant-tabs-tab:hover {
+    color: var(--color-1) !important;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--color-1) !important;
+}
+.ant-tabs-ink-bar {
+    background: var(--color-1) !important;
+}
+.ant-tabs-nav {
+    background: transparent !important;
+    padding-left: 4px;
+}
+.ant-tabs-nav::before {
+    border-bottom-color: var(--card-border) !important;
+}
+.ant-tabs-content-holder,
+.ant-tabs-tabpane {
+    color: var(--text-primary) !important;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — système global
+   Breakpoints standardisés :
+     sm  < 480px   → mobile portrait
+     md  < 768px   → mobile landscape / tablette
+     lg  < 1024px  → tablette paysage / petit desktop
+   Règle : toujours utiliser ces trois valeurs
+   dans les @media, jamais d'autres.
+════════════════════════════════════════ */
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+img, video, iframe { max-width: 100%; }
+
+/* ── Variables spacing ── */
+:root {
+    --sp-1:  4px;
+    --sp-2:  8px;
+    --sp-3:  12px;
+    --sp-4:  16px;
+    --sp-5:  20px;
+    --sp-6:  24px;
+    --sp-8:  32px;
+    --sp-10: 40px;
+    --sp-12: 48px;
+
+    /* Padding de page selon écran — utilisé dans les layouts */
+    --page-px:    30px;   /* desktop */
+    --page-py:    20px;
+}
+
+@media (max-width: 1024px) {
+    :root { --page-px: 20px; }
+}
+@media (max-width: 768px) {
+    :root { --page-px: 16px; --page-py: 16px; }
+}
+@media (max-width: 480px) {
+    :root { --page-px: 12px; --page-py: 12px; }
+}
+
+/* ── Scrollbar utility ── */
+.scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb, var(--card-border)) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+    background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb, var(--card-border));
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--color-1);
+}
+
+/* ── Ant Design Empty — dark-mode fix ── */
+.ant-empty-description {
+    color: var(--text-secondary) !important;
+}
+.ant-empty-img-simple-ellipse {
+    fill: var(--card-border) !important;
+}
+.ant-empty-img-simple-path {
+    fill: var(--surface-subtle) !important;
+    stroke: var(--card-border) !important;
+}

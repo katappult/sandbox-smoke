@@ -1,0 +1,49 @@
+.container{
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: var(--medium-big);
+}
+
+.title_container{
+    align-self: stretch;
+    position: relative;
+    font-size: var(--medium-large);
+}
+
+.title{
+    font-weight: 700;
+    line-height: 25.2px;
+}
+
+.drag_drop{
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: var(--border-radius-xs);
+    background-color: var(--surface-subtle);
+    border: 2px dashed var(--input-border);
+    box-sizing: border-box;
+    height: 196px;
+    overflow: hidden;
+    flex-shrink: 0;
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.cloud{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.preview{
+    height: 100%;
+}

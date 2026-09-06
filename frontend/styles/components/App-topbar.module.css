@@ -1,0 +1,359 @@
+/* ────────────────────────────────────────
+   App Top Bar
+──────────────────────────────────────── */
+.container {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-w, 60px);
+    right: 0;
+    height: 60px;
+    background: var(--topbar-bg, #ffffff);
+    color: var(--topbar-text, #101828);
+    display: flex;
+    align-items: center;
+    transition: left 0.22s ease;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0 24px;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.nav_title {
+    display: flex;
+    align-items: center;
+    margin-left: -10px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Action buttons ── */
+.action_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--topbar-text, #667085);
+    opacity: 0.7;
+    transition: background 0.15s, opacity 0.15s;
+    position: relative;
+}
+
+.action_btn:hover {
+    background: var(--surface-hover);
+    opacity: 1;
+}
+
+/* ── Notification badge ── */
+.notif_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    color: #667085;
+    transition: background 0.15s;
+}
+
+.notif_wrapper:hover {
+    background: var(--surface-hover);
+}
+
+.notif_badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    background: #f04438;
+    border-radius: var(--radius-badge);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    line-height: 1;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ── User avatar + pseudo ── */
+.account_trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-left: 8px;
+    padding: 4px 8px 4px 4px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s;
+    text-decoration: none;
+}
+
+.account_trigger:hover {
+    background: var(--surface-hover);
+}
+
+.account_user {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.account_pseudo {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--topbar-text, #101828);
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Divider ── */
+.divider {
+    width: 1px;
+    height: 20px;
+    background: var(--card-border);
+    margin: 0 8px;
+}
+
+/* ── Profile dropdown ── */
+.header_user_menu {
+    position: fixed !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10) !important;
+    min-width: 280px;
+    z-index: 1100;
+}
+
+.compte_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.compte_header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--card-border);
+    text-decoration: none;
+    color: inherit;
+}
+
+.compte_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.compte_pseudo_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.compte_pseudo {
+    font-weight: 700;
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.compte_pseudo_link {
+    font-size: var(--fs-sm);
+    color: var(--color-1);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.compte_pseudo_link:hover {
+    text-decoration: underline;
+}
+
+.alignItems {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menu_compte {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    font-size: var(--fs-sm);
+    transition: background 0.12s;
+}
+
+.menu_compte:hover {
+    background: var(--surface-hover);
+}
+
+.menu_title {
+    flex: 1;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    font-size: var(--fs-sm);
+}
+
+.menu_detail {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.chevron_right {
+    width: 16px;
+    height: 16px;
+    opacity: 0.4;
+}
+
+.chevron_right_header {
+    width: 16px;
+    height: 16px;
+    opacity: 0.3;
+    flex-shrink: 0;
+}
+
+/* ── Auth buttons (logged out state) ── */
+.button_transparent {
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--input-border);
+    background: transparent;
+    font-size: var(--fs-base);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.button_transparent:hover {
+    background: var(--surface-hover);
+}
+
+/* ── Hamburger (mobile only) ── */
+.brand_area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+
+.hamburger:hover { background: var(--surface-hover); }
+
+.hamburger_line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--topbar-text, #344054);
+}
+
+/* ── Responsive topbar ── */
+@media (max-width: 768px) {
+    .right { gap: 2px; }
+    .divider { display: none; }
+    .account_pseudo { display: none; }
+    .navbar { padding: 0 12px; }
+}
+
+/* ── Dark mode toggle in menu ── */
+.menu_icon {
+    font-size: var(--fs-md);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.toggle_track {
+    width: 36px;
+    height: 20px;
+    border-radius: var(--radius-badge);
+    background: var(--card-border);
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.toggle_track[data-active="true"] {
+    background: var(--color-1);
+}
+
+.toggle_thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle_track[data-active="true"] .toggle_thumb {
+    transform: translateX(16px);
+}

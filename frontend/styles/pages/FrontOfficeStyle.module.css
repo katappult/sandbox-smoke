@@ -1,0 +1,47 @@
+
+.accueil {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.accueil_mobile{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.map_search_bar{
+    position: fixed;
+    top:70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    width: 100vw;
+    border-bottom: 0.1px solid #BDBDBD;
+    z-index: 10;
+    min-height: 70px;
+
+}
+
+.map_search_bar .ant-select-single,
+.map_search_bar .ant-select-selector{
+    border: none!important;
+}
+
+@media screen and (max-width: 768px) {
+    .accueil{
+        display: none;
+    }
+}

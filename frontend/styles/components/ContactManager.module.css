@@ -1,0 +1,399 @@
+/* ────────────────────────────────────────
+   ContactManager
+──────────────────────────────────────── */
+
+.manager {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Empty state ── */
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 44px 24px;
+    border: 1.5px dashed var(--card-border);
+    border-radius: var(--radius-md);
+    background: var(--surface-subtle);
+    text-align: center;
+}
+
+.empty_title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.empty_desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: -8px;
+}
+
+/* ── Section block ── */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.section_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.section_label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.section_add_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--input-border);
+    background: var(--card-bg);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: border-color 0.12s, color 0.12s;
+}
+
+.section_add_btn:hover {
+    border-color: var(--color-1);
+    color: var(--color-1);
+}
+
+.empty_section_hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 8px 0;
+}
+
+/* ── Address block ── */
+.address_block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+}
+
+.address_icon {
+    color: var(--color-1);
+    font-size: 18px !important;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.address_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.address_line {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.address_sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ── Contact item row ── */
+.contact_item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    transition: border-color 0.12s;
+}
+
+.contact_item:hover {
+    border-color: var(--input-border);
+}
+
+.contact_item_icon {
+    color: var(--color-1);
+    font-size: 18px !important;
+    flex-shrink: 0;
+}
+
+.contact_item_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.contact_item_label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.contact_item_value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.contact_item_actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* ── Action buttons ── */
+.action_btn {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: border-color 0.12s, color 0.12s, background 0.12s;
+}
+
+.action_btn:hover {
+    border-color: var(--color-1);
+    color: var(--color-1);
+    background: var(--surface-hover);
+}
+
+.action_btn_danger:hover {
+    border-color: #d92d20;
+    color: #d92d20;
+    background: rgba(217, 45, 32, 0.08);
+}
+
+.add_full_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 20px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--color-1);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.add_full_btn:hover {
+    opacity: 0.85;
+}
+
+/* ── Address card (accordion) ── */
+.address_card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    background: var(--surface-subtle);
+    overflow: hidden;
+}
+
+/* Summary row */
+.address_card_summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s;
+}
+
+.address_card_summary:hover {
+    background: var(--surface-hover, rgba(0,0,0,0.03));
+}
+
+.summary_left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.summary_info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.summary_chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.summary_chip_icon {
+    color: var(--color-1);
+    font-size: 13px !important;
+    flex-shrink: 0;
+}
+
+.summary_none {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.summary_toggle {
+    color: var(--text-muted);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+/* Expanded sections wrapper */
+.address_card_header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.address_card_body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 16px 16px;
+}
+
+.master_badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-1);
+    background: var(--opacity-30-color-1, rgba(0, 122, 255, 0.12));
+    padding: 2px 7px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.master_badge_off {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--card-border);
+    padding: 2px 7px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.master_toggle_row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.master_toggle_label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.add_address_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--input-border);
+    background: var(--card-bg);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: border-color 0.12s, color 0.12s;
+}
+
+.add_address_btn:hover {
+    border-color: var(--color-1);
+    color: var(--color-1);
+}
+
+/* ── Sub-section header (inside address card) ── */
+.subsection_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.subsection_label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* ── Modal form internals ── */
+.modal_section_title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 16px 0 4px;
+}
+
+.modal_section_title:first-child {
+    margin-top: 8px;
+}
+
+.form_divider {
+    height: 1px;
+    background: var(--card-border);
+    margin: 12px 0;
+}
