@@ -1,0 +1,135 @@
+/* ───────────────────────────────────────────
+   Auth Layout — split screen
+─────────────────────────────────────────── */
+.root {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* ── Left branding panel ── */
+.panel {
+    flex: 0 0 420px;
+    background: linear-gradient(145deg, var(--color-1) 0%, #005ec4 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* decorative circles — left panel */
+.panel::before,
+.panel::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+    opacity: 0.12;
+}
+.panel::before {
+    width: 380px;
+    height: 380px;
+    top: -120px;
+    right: -160px;
+}
+.panel::after {
+    width: 260px;
+    height: 260px;
+    bottom: -80px;
+    left: -80px;
+}
+
+.panel_inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.panel_title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.panel_sub {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 280px;
+}
+
+.panel_badges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.panel_badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.panel_badge_dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-2);
+    flex-shrink: 0;
+}
+
+/* ── Right form side ── */
+.form_side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form_top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 32px;
+}
+
+.form_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 32px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .panel {
+        display: none;
+    }
+
+    .form_side {
+
+    }
+
+    .form_top {
+        padding: 16px 20px;
+    }
+
+    .form_content {
+        padding: 24px 20px;
+    }
+}

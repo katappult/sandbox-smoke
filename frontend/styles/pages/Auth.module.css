@@ -1,0 +1,301 @@
+/* ───────────────────────────────────────────
+   Auth forms — shared styles
+   Used by Login, Register, LostPass
+─────────────────────────────────────────── */
+
+/* Card wrapper */
+.card {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-card);
+    padding: 40px 36px;
+    box-shadow: var(--shadow-card);
+}
+
+/* ── Header ── */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.login_title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-light-pri);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ── Body ── */
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Form group ── */
+.form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form_label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+}
+
+/* Override Ant Design form items inside auth */
+.body :global(.ant-form-item) {
+    margin-bottom: 0;
+}
+
+.body :global(.ant-form-item-label > label) {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    height: auto;
+}
+
+/* ── Inline field error ── */
+.field_error {
+    font-size: 12px;
+    color: #d92d20;
+    margin-top: 2px;
+}
+
+/* ── Primary button ── */
+.login_button {
+    width: 100%;
+    height: 46px;
+    background-color: var(--color-1);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-button);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.login_button:hover:not(:disabled) {
+    background-color: var(--opacity-70-color-1);
+}
+
+.login_button:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+.login_button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ── Ghost / back button ── */
+.retour_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.retour_button:hover {
+    background: var(--surface-hover);
+}
+
+/* ── Forgot password row ── */
+.forgot_row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.forgot_link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.forgot_link:hover {
+    text-decoration: underline;
+}
+
+/* ── Footer (register / login links) ── */
+.footer_label_register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.footer_link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer_link:hover {
+    text-decoration: underline;
+}
+
+/* ── Divider ── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--card-border);
+}
+
+/* ── Conditions (register) ── */
+.accept_conditions_wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+
+.form_label_register_conditions_href {
+    color: var(--color-1);
+    text-decoration: underline;
+}
+
+/* ── 2FA ── */
+.twofa_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--text-tertiary);
+    background: var(--surface-subtle);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+}
+
+.twofa_info strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.resend_row {
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%;
+        padding: 28px 20px;
+        border-radius: var(--radius-card);
+    }
+}
+
+/* ─── Legacy aliases (keep backward compat with LostPass / Register) ─── */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.login_content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.login_header_label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input_group_row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.bottom {
+    width: 100%;
+}
+
+.button_forgot {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 26px;
+}

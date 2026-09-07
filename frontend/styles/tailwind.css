@@ -1,0 +1,4 @@
+/* Tailwind v3 — preflight désactivé dans tailwind.config.js pour préserver Ant Design */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
