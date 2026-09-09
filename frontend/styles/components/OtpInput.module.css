@@ -1,0 +1,73 @@
+/* ───────────────────────────────────────────
+   OTP 4-box input
+─────────────────────────────────────────── */
+.otp_row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.otp_box {
+    width: 64px;
+    height: 68px;
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius-md);
+
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    caret-color: var(--color-1);
+    /* prevent mobile zoom */
+    font-family: var(--font-family), serif;
+}
+
+.otp_box:focus {
+    border-color: var(--color-1);
+    box-shadow: 0 0 0 3px var(--opacity-10-color-1);
+}
+
+.otp_box_filled {
+    border-color: var(--color-1);
+    background: var(--opacity-10-color-1);
+}
+
+.otp_box_error {
+    border-color: #d92d20 !important;
+    background: #fff5f5 !important;
+    box-shadow: 0 0 0 3px rgba(217, 45, 32, 0.12) !important;
+    animation: shake 0.3s ease;
+}
+
+.otp_error_msg {
+    font-size: 13px;
+    color: #d92d20;
+    text-align: center;
+    margin: 0;
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-5px); }
+    40%  { transform: translateX(5px); }
+    60%  { transform: translateX(-4px); }
+    80%  { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Responsive: smaller on mobile */
+@media (max-width: 400px) {
+    .otp_box {
+        width: 54px;
+        height: 58px;
+        font-size: 24px;
+        border-radius: var(--radius-sm);
+    }
+
+    .otp_row {
+        gap: 8px;
+    }
+}

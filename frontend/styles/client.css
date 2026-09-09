@@ -1,0 +1,72 @@
+/*
+ * Styles globaux pour le layout client/public.
+ * Importé dans _app.js après global.css.
+ * Les overrides Ant Design sont scopés sous .client-layout (pas de :global()).
+ */
+
+/* ── Body override (écrase brand_1.css qui impose --layout-bg sur body) ── */
+body.client-body {
+    background-color: var(--client-layout-bg, #ffffff);
+    display: block;
+}
+
+/* ── Wrapper racine ─────────────────────────────────────────────── */
+.client-layout {
+    background: var(--client-layout-bg, #ffffff);
+    min-height: 100vh;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────── */
+.client-layout .client-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Contenu principal ──────────────────────────────────────────── */
+.client-layout main {
+    min-height: 100vh;
+    background: var(--client-layout-bg);
+    color: var(--text-primary);
+    transition: background 0.2s, color 0.2s;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.client-layout footer {
+    background: var(--client-footer-bg);
+    color: var(--client-footer-text);
+    transition: background 0.2s, color 0.2s;
+}
+
+/* ── Overrides Ant Design scopés client ─────────────────────────── */
+.client-layout .ant-btn-primary {
+    background-color: var(--client-primary) !important;
+    border-color: var(--client-primary) !important;
+}
+
+.client-layout .ant-btn-primary:hover,
+.client-layout .ant-btn-primary:focus {
+    background-color: var(--client-accent-hover) !important;
+    border-color: var(--client-accent-hover) !important;
+}
+
+.client-layout .ant-tabs-ink-bar {
+    background: var(--client-primary) !important;
+}
+
+.client-layout .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--client-primary) !important;
+}
+
+.client-layout a {
+    color: var(--client-primary);
+    transition: color 0.15s;
+}
+
+.client-layout a:hover {
+    color: var(--client-accent-hover);
+}

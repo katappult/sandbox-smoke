@@ -1,0 +1,387 @@
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: var(--letter-spacing-heading);
+    text-transform: var(--text-transform-heading);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.login-or-separator{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin:2rem 0;
+}
+
+.login-or-separator:before, .login-or-separator:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid var(--input-border);
+    margin: auto;
+}
+
+.login-or-separator:before {
+    margin-right: 10px
+}
+.login-or-separator:after {
+    margin-left: 10px
+}
+.ant-table-wrapper .ant-table-thead > tr > th{
+    background: var(--card-bg) !important;
+}
+
+.form_input{
+    align-self: stretch;
+    border-radius: var(--radius-xs);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: var(--fs-base);
+}
+
+
+.button-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    color: var(--text-dark-pri);
+    font-weight: var(--btn-font-weight);
+    background-color: var(--color-1);
+    border-radius: var(--radius-button);
+    font-size: var(--text-label);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    height: inherit;
+}
+
+.w-100{
+    width:100%;
+}
+
+.tab-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.client-w80-section-root{
+    min-width: 80%;
+    margin: auto;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+
+.section-header .ant-typography {
+    font-size: var(--fs-md) !important;
+    font-weight: 700;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+}
+
+.description {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.front-container{
+    width: calc(100vw - 100px);
+    height: 100vh;
+    margin-top: 80px;
+}
+
+.ant-layout-sider-trigger{
+    border-right: 1px solid #e8e8e8;
+}
+
+.notification-error-bottom-left,
+.notification-success-bottom-left{
+    background: #8A9A5B;
+    max-width: 90px;
+}
+
+.notification-error-bottom-left{
+    background:red;
+}
+
+.notification-success-bottom-left .ant-notification-notice-message {
+    color: #FFFFFF!important;
+    font-weight: 700;
+}
+.notification-success-bottom-left .ant-notification-notice-close{
+    top:22px!important;
+}
+.notification-success-bottom-left .ant-notification-notice-close svg{
+    fill:#FFFFFF;
+    stroke: #FFFFFF;
+}
+
+.menu-front-div {
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow:hidden;
+}
+
+.menu-front-div:hover{
+    overflow-y: auto;
+}
+
+.flex_col{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.flex_row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.flex_space_between{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+
+.import_card_section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+
+.import_card {
+    height: 220px;
+    min-width: 240px;
+    flex: 1 1 280px;
+    grid-template-rows: 25% 65%;
+    grid-template-columns: 100%;
+    display: grid;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    padding: 1rem;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    box-shadow: 0 4px 8px -2px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.import_card:hover {
+    border-color: var(--color-1);
+    box-shadow: 0 6px 16px -4px rgba(0,0,0,0.12);
+}
+
+.import_card_header {
+    max-height: 40px;
+}
+
+@media (max-width: 480px) {
+    .import_card_section {
+        flex-direction: column;
+    }
+    .import_card {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+.ant-table-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-top: 1px solid var(--card-border);
+    background: var(--card-bg);
+    width: 100%
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th{
+    font-weight: 600;
+    text-align: start;
+    background: var(--card-bg) !important;
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* ─── Rounded corners for all Ant Design tables ─── */
+.ant-table-wrapper .ant-table {
+    border-radius: var(--radius-card, 8px);
+    overflow: hidden;
+}
+
+.ant-table-wrapper .ant-table-container {
+    border-radius: var(--radius-card, 8px);
+    overflow: hidden;
+}
+
+.ant-table-wrapper .ant-table-thead > tr:first-child > th:first-child,
+.ant-table-wrapper .ant-table-thead > tr:first-child > td:first-child {
+    border-start-start-radius: var(--radius-card, 8px) !important;
+}
+
+.ant-table-wrapper .ant-table-thead > tr:first-child > th:last-child,
+.ant-table-wrapper .ant-table-thead > tr:first-child > td:last-child {
+    border-start-end-radius: var(--radius-card, 8px) !important;
+}
+
+.ant-layout-sider-trigger{
+    border-right: solid 2px var(--gray-200, #EAECF0);
+}
+
+.ant-menu-inline .ant-menu-item{
+    height: 36px;
+}
+
+.divider-bold {
+    border: 1.2px solid var(--gray-200, #EAECF0);
+    margin: 10px 0;
+}
+
+.ant-form-item{
+    margin-bottom: 0px;
+}
+
+.ant_form_item_100vh .ant-form-item-control-input,
+.ant_form_item_100vh .ant-col,
+.ant_form_item_100vh .ant-row,
+.ant_form_item_100vh{
+    height: 100%;
+}
+
+.ant-badge .ant-badge-count{
+    line-height: 13px;
+}
+
+.badge-notifications{
+    margin: 5px 10px 0px 10px;
+}
+
+.badge-notifications sup{
+    margin: auto;
+    min-width:15px!important;
+    height:15px!important;
+}
+
+.hand-hover{
+    cursor: pointer;
+}
+.alignItems {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu_title {
+    flex: 1;
+    position: relative;
+    line-height: 25.2px;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--text-primary);
+    font-weight: 900;
+}
+.menu-detail {
+    flex: 1;
+    position: relative;
+    line-height: 25.2px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.chevron_right {
+    position: relative;
+    margin-left: 100px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.chevron_right_header {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.separateur{
+    border: 0;
+    border-top: 1px solid #00000015;
+}
+
+/* ════════════════════════════════════════
+   Utilitaires responsive
+   sm < 480 | md < 768 | lg < 1024
+════════════════════════════════════════ */
+
+/* Caché sur mobile (< 768px), visible desktop */
+.hide-mobile { display: block; }
+@media (max-width: 768px) { .hide-mobile { display: none !important; } }
+
+/* Visible uniquement sur mobile (< 768px) */
+.show-mobile { display: none; }
+@media (max-width: 768px) { .show-mobile { display: block !important; } }
+
+/* Flex uniquement sur mobile */
+.show-mobile-flex { display: none; }
+@media (max-width: 768px) { .show-mobile-flex { display: flex !important; } }
+
+/* Caché sur sm (< 480px) */
+.hide-sm { display: block; }
+@media (max-width: 480px) { .hide-sm { display: none !important; } }
+
+/* Tronquer le texte en overflow */
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
