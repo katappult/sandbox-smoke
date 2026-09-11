@@ -1,0 +1,128 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="Produit-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="produit_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="produit_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="Produit-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="produit">
+            <column name="OID" type="integer" defaultValueComputed="nextval('produit_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="quantite_stock" type="INTEGER"/>
+        <column name="prix_unitaire" type="NUMERIC"/>
+        <column name="description" type="TEXT"/>
+        <column name="libelle" type="VARCHAR(255)"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="Produit-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="produit_primary_index"
+                tableName="produit"/>
+        </preConditions>
+
+        <dropIndex indexName="produit_primary_index" tableName="produit"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="produit_idx_version" tableName="produit">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_create" tableName="produit">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_modified" tableName="produit">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="produit_idx_version_create" tableName="produit">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="produit_idx_modified_idx_last_modified" tableName="produit">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="produit_idx_created_by" tableName="produit">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="produit_idx_libelle" tableName="produit">
+	<column name="libelle"/>
+</createIndex>
+<createIndex indexName="produit_idx_prix_unitaire" tableName="produit">
+	<column name="prix_unitaire"/>
+</createIndex>
+<createIndex indexName="produit_idx_quantite_stock" tableName="produit">
+	<column name="quantite_stock"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="produit" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="produit">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+
+    <changeSet id="6" author="Produit-schema-thumbed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="produit">
+            <column name="thumbnail_oid" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint  baseColumnNames="thumbnail_oid"
+                                  baseTableName="produit"
+                                  constraintName="Produit_thumbed_thumbnail_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="T_THUMBNAIL_HOLDER"/>
+    </changeSet>
+</databaseChangeLog>
+

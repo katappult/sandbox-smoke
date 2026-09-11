@@ -1,0 +1,107 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="LignePanier-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="ligne_panier_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="ligne_panier_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="LignePanier-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="ligne_panier">
+            <column name="OID" type="integer" defaultValueComputed="nextval('ligne_panier_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="quantite" type="INTEGER"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="LignePanier-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="ligne_panier_primary_index"
+                tableName="ligne_panier"/>
+        </preConditions>
+
+        <dropIndex indexName="ligne_panier_primary_index" tableName="ligne_panier"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-ligne_panier" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="ligne_panier_idx_version" tableName="ligne_panier">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="ligne_panier_idx_create" tableName="ligne_panier">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="ligne_panier_idx_modified" tableName="ligne_panier">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="ligne_panier_idx_version_create" tableName="ligne_panier">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="ligne_panier_idx_modified_idx_last_modified" tableName="ligne_panier">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="ligne_panier_idx_created_by" tableName="ligne_panier">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="ligne_panier_idx_quantite" tableName="ligne_panier">
+	<column name="quantite"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-ligne_panier" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ligne_panier" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ligne_panier">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+</databaseChangeLog>
+

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE lifecycle>
+
+<lifecycle name="Commande lifecycle">
+    <states>
+        <state>
+            <name>NEW</name>
+        </state>
+        <state>
+            <name>ACCEPTED</name>
+        </state>
+        <state>
+            <name>REFUSED</name>
+        </state>
+        <state>
+            <name>CLOSED</name>
+        </state>
+    </states>
+
+    <transitions>
+        <transition source="NEW" action="SET_STATE">
+            <target>ACCEPTED</target>
+        </transition>
+        <transition source="NEW" action="SET_STATE">
+            <target>REFUSED</target>
+        </transition>
+        <transition source="ACCEPTED" action="SET_STATE">
+            <target>REFUSED</target>
+        </transition>
+
+        <transition source="NEW" action="ADMINSET_STATE">
+            <target>ACCEPTED</target>
+        </transition>
+        <transition source="REFUSED" action="ADMINSET_STATE">
+            <target>ACCEPTED</target>
+        </transition>
+        <transition source="ACCEPTED" action="ADMINSET_STATE">
+            <target>NEW</target>
+        </transition>
+        <transition source="ACCEPTED" action="ADMINSET_STATE">
+            <target>CLOSED</target>
+        </transition>
+    </transitions>
+
+</lifecycle>

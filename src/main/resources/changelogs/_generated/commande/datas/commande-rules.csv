@@ -1,0 +1,4 @@
+businessrule_identifier;br_order;isactive;isvetoable;description;event_name;business_class;br_rule;transac_phase;container_oid;business_type
+CommandeSetReferenceNumber;1;1;1;Description of rule;PRE_CREATE_COMMANDE;.model.Commande;numberableSetDefaultReferenceRule;NULL;1;
+CommandeSetLifecycle;2;1;1;Description of rule;PRE_CREATE_COMMANDE;.model.Commande;lifecycleManagedSystemRules;NULL;1;
+CommandeSetType;1;1;1;Description of rule;PRE_CREATE_COMMANDE;.model.Commande;typeManagedSetBusinessTypeRule;NULL;1;

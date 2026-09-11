@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_COMMANDE;.model.event.PreCreateCommande
+PRE_DELETE_COMMANDE;.model.event.PreDeleteCommande
+PRE_UPDATE_COMMANDE;.model.event.PreUpdateCommande
+POST_CREATE_COMMANDE;.model.event.PostCreateCommande
+POST_DELETE_COMMANDE;.model.event.PostDeleteCommande
+POST_UPDATE_COMMANDE;.model.event.PostUpdateCommande

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jobMappingPathResolver>
+
+
+    <jobMappingPath job="standardBatchExport" type="manageProduit" mappingFilePath="classpath:/export/_generated/produit-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageProduit" mappingFilePath="classpath:/import/_generated/produit-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="managePanier" mappingFilePath="classpath:/export/_generated/panier-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="managePanier" mappingFilePath="classpath:/import/_generated/panier-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageLignePanier" mappingFilePath="classpath:/export/_generated/lignepanier-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageLignePanier" mappingFilePath="classpath:/import/_generated/lignepanier-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCommande" mappingFilePath="classpath:/export/_generated/commande-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCommande" mappingFilePath="classpath:/import/_generated/commande-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageLigneCommande" mappingFilePath="classpath:/export/_generated/lignecommande-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageLigneCommande" mappingFilePath="classpath:/import/_generated/lignecommande-import-mapping.xml"/>
+</jobMappingPathResolver>

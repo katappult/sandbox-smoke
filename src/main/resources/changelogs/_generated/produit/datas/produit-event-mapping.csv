@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_PRODUIT;.model.event.PreCreateProduit
+PRE_DELETE_PRODUIT;.model.event.PreDeleteProduit
+PRE_UPDATE_PRODUIT;.model.event.PreUpdateProduit
+POST_CREATE_PRODUIT;.model.event.PostCreateProduit
+POST_DELETE_PRODUIT;.model.event.PostDeleteProduit
+POST_UPDATE_PRODUIT;.model.event.PostUpdateProduit
