@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_LIGNE_COMMANDE;.model.event.PreCreateLigneCommande
+PRE_DELETE_LIGNE_COMMANDE;.model.event.PreDeleteLigneCommande
+PRE_UPDATE_LIGNE_COMMANDE;.model.event.PreUpdateLigneCommande
+POST_CREATE_LIGNE_COMMANDE;.model.event.PostCreateLigneCommande
+POST_DELETE_LIGNE_COMMANDE;.model.event.PostDeleteLigneCommande
+POST_UPDATE_LIGNE_COMMANDE;.model.event.PostUpdateLigneCommande

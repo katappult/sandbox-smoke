@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_LIGNE_PANIER;.model.event.PreCreateLignePanier
+PRE_DELETE_LIGNE_PANIER;.model.event.PreDeleteLignePanier
+PRE_UPDATE_LIGNE_PANIER;.model.event.PreUpdateLignePanier
+POST_CREATE_LIGNE_PANIER;.model.event.PostCreateLignePanier
+POST_DELETE_LIGNE_PANIER;.model.event.PostDeleteLignePanier
+POST_UPDATE_LIGNE_PANIER;.model.event.PostUpdateLignePanier

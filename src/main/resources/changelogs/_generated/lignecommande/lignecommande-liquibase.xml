@@ -4,4 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    
+		<include file="changelogs/_generated/lignecommande/lignecommande-schema.xml"/>
+		<include file="changelogs/_generated/lignecommande/lignecommande-rules.xml"/>
 </databaseChangeLog>

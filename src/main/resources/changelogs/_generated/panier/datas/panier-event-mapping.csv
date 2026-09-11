@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_PANIER;.model.event.PreCreatePanier
+PRE_DELETE_PANIER;.model.event.PreDeletePanier
+PRE_UPDATE_PANIER;.model.event.PreUpdatePanier
+POST_CREATE_PANIER;.model.event.PostCreatePanier
+POST_DELETE_PANIER;.model.event.PostDeletePanier
+POST_UPDATE_PANIER;.model.event.PostUpdatePanier

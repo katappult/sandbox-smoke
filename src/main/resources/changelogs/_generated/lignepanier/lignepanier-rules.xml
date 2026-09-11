@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet author="lignepanier-rule" id="1">
+        <validCheckSum>ANY</validCheckSum>
+        <loadData tableName="T_BUSINESS_RULES" file="/changelogs/_generated/lignepanier/datas/lignepanier-rules.csv" quotchar="'" separator=";" />
+        <loadData tableName="T_BUSINESS_RULES_EVENT_MAPPING" file="/changelogs/_generated/lignepanier/datas/lignepanier-event-mapping.csv" quotchar="'" separator=";" />
+    </changeSet>
+
+
+    <changeSet id="SetLignePanierProduitRule" author="katappult">
+        <validCheckSum>ANY</validCheckSum>
+            <insert tableName="T_BUSINESS_RULES">
+                <column name="EVENT_NAME" value="POST_CREATE_LIGNE_PANIER"/>
+                <column name="BUSINESSRULE_IDENTIFIER" value="SetLignePanierProduitRule"/>
+                <column name="ISACTIVE" value="1"/>
+                <column name="BR_ORDER" value="1"/>
+                <column name="ISVETOABLE" value="1"/>
+                <column name="DESCRIPTION" value="Set the entity"/>
+                <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.LignePanier"/>
+                <column name="BR_RULE" value="SetLignePanierProduitRule"/>
+                <column name="CONTAINER_OID" valueComputed="(select oid from T_CONTAINER where path='/')"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

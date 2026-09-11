@@ -1,0 +1,107 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="Panier-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="panier_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="panier_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="Panier-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="panier">
+            <column name="OID" type="integer" defaultValueComputed="nextval('panier_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="date_creation" type="TIMESTAMP"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="Panier-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="panier_primary_index"
+                tableName="panier"/>
+        </preConditions>
+
+        <dropIndex indexName="panier_primary_index" tableName="panier"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-panier" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="panier_idx_version" tableName="panier">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="panier_idx_create" tableName="panier">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="panier_idx_modified" tableName="panier">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="panier_idx_version_create" tableName="panier">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="panier_idx_modified_idx_last_modified" tableName="panier">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="panier_idx_created_by" tableName="panier">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="panier_idx_date_creation" tableName="panier">
+	<column name="date_creation"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-panier" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="panier" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="panier">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+</databaseChangeLog>
+
