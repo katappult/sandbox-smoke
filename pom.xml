@@ -496,23 +496,13 @@
             </snapshots>
         </repository>
         <repository>
-            <id>katappult.cloud</id>
-            <name>katappult releases</name>
-            <url>http://maven-repo.katappult.cloud/katappult-releases/</url>
+            <id>katappultai-releases</id>
+            <name>katappultai Repository</name>
+            <layout>default</layout>
+            <url>https://repo.katappult.ai/repository/nexitia-releases/</url>
             <snapshots>
-                <checksumPolicy>ignore</checksumPolicy>
+                <enabled>false</enabled>
             </snapshots>
-            <releases>
-                <checksumPolicy>ignore</checksumPolicy>
-            </releases>
-        </repository>
-        <repository>
-            <id>archetype</id>
-            <name>katappult archetypes</name>
-            <url>http://maven-repo.katappult.cloud/katappult-releases/</url>
-            <releases>
-                <checksumPolicy>ignore</checksumPolicy>
-            </releases>
         </repository>
     </repositories>
 
