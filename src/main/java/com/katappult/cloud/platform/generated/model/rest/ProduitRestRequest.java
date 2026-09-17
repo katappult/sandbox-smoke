@@ -14,6 +14,8 @@ import java.util.Date;
 
 import java.io.Serializable;
 import lombok.*;
+import java.math.BigDecimal;
+
 
 @NoArgsConstructor
 @ToString
