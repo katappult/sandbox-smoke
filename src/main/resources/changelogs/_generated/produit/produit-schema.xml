@@ -1,0 +1,235 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="Produit-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="produit_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="produit_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="Produit-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="produit">
+            <column name="OID" type="integer" defaultValueComputed="nextval('produit_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="en_stock" type="INTEGER"/>
+        <column name="prix" type="NUMERIC"/>
+        <column name="description" type="TEXT"/>
+        <column name="titre" type="VARCHAR(255)"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="Produit-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="produit_primary_index"
+                tableName="produit"/>
+        </preConditions>
+
+        <dropIndex indexName="produit_primary_index" tableName="produit"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="produit_idx_version" tableName="produit">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_create" tableName="produit">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_modified" tableName="produit">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="produit_idx_version_create" tableName="produit">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="produit_idx_modified_idx_last_modified" tableName="produit">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="produit_idx_created_by" tableName="produit">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="produit_idx_titre" tableName="produit">
+	<column name="titre"/>
+</createIndex>
+<createIndex indexName="produit_idx_prix" tableName="produit">
+	<column name="prix"/>
+</createIndex>
+<createIndex indexName="produit_idx_en_stock" tableName="produit">
+	<column name="en_stock"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="produit" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="produit">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+
+    <changeSet id="5" author="Produit-schema-type-managed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="produit">
+            <column name="type_oid" type="BIGINT"/>
+        </addColumn>
+
+        <addForeignKeyConstraint  baseColumnNames="type_oid"
+                                  baseTableName="produit"
+                                  constraintName="Produit_type_managed_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="T_SOFTTYPE"/>
+    </changeSet>
+
+    <changeSet id="2" author="Produit-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <insert tableName="T_LIFECYCLEMASTER">
+            <column name="name" value="Produit lifecycle"/>
+            <column name="number" value="PRODUIT_0001"/>
+            <column name="description" value="Produit lifecycle description"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_LIFECYCLE">
+            <column name="is_latest_iteration" value="1"/>
+            <column name="iteration_number" value="1"/>
+            <column name="is_working_copy" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="master_oid" valueComputed="(select oid from T_LIFECYCLEMASTER where name='Produit lifecycle')"/>
+            <column name="initial_state" value="NEW"/>
+            <column name="terminal_state" value="CLOSED"/>
+        </insert>
+
+        <insert tableName="T_CONTENTITEM">
+            <column name="content_size" value="10"/>
+            <column name="md5" value="1"/>
+            <column name="rating" valueNumeric="1"/>
+            <column name="download_count" valueNumeric="1"/>
+            <column name="name" value="PRODUIT_LIFECYCLE"/>
+            <column name="dtype" value="PRIM"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_CONTENTLOCATION">
+            <column name="content_type" value="BLOB"/>
+            <column name="name" value="PRODUIT_LIFECYCLE"/>
+            <column name="item_oid" valueComputed="(select oid from T_CONTENTITEM where name='PRODUIT_LIFECYCLE')"/>
+        </insert>
+        <update tableName="T_CONTENTLOCATION">
+            <column name="content_blob" valueBlobFile="datas/produit-lifecycle.xml"/>
+            <where>name='PRODUIT_LIFECYCLE'</where>
+        </update>
+        <update tableName="T_LIFECYCLE">
+            <column name="primary_content_oid" valueComputed="(select oid from T_CONTENTITEM where name='PRODUIT_LIFECYCLE')"/>
+            <where>master_oid=(select oid from t_lifecyclemaster where name='Produit lifecycle')</where>
+        </update>
+
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="REFUSED"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="NEW"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="CLOSED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Produit lifecycle')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="Produit-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="produit">
+            <column name="lifecycle_oid" type="BIGINT"/>
+            <column name="lifecycle_state" type="VARCHAR(100)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="Produit-schema-thumbed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="produit">
+            <column name="thumbnail_oid" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint  baseColumnNames="thumbnail_oid"
+                                  baseTableName="produit"
+                                  constraintName="Produit_thumbed_thumbnail_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="T_THUMBNAIL_HOLDER"/>
+    </changeSet>
+</databaseChangeLog>
+

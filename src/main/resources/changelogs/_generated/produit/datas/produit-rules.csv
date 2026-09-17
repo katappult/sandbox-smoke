@@ -1,0 +1,3 @@
+businessrule_identifier;br_order;isactive;isvetoable;description;event_name;business_class;br_rule;transac_phase;container_oid;business_type
+ProduitSetLifecycle;2;1;1;Description of rule;PRE_CREATE_PRODUIT;com.katappult.cloud.platform.generated.model.Produit;lifecycleManagedSystemRules;NULL;1;
+ProduitSetType;1;1;1;Description of rule;PRE_CREATE_PRODUIT;com.katappult.cloud.platform.generated.model.Produit;typeManagedSetBusinessTypeRule;NULL;1;
