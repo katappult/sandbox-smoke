@@ -266,7 +266,7 @@ class ProduitIntegrationTests extends AbstractGeneratedTests{
         ProduitRestRequest request = new ProduitRestRequest();
         request.setTitre(randomString());
     request.setDescription(randomString());
-    request.setPrix(randomInt());
+    request.setPrix(java.math.BigDecimal.valueOf(randomInt()));
     
         request.getParams().put("businessType", "com.katappult.online.types.ProduitType");
         return request;
