@@ -1,0 +1,171 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="Categorie-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="categorie_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="categorie_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="Categorie-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="categorie">
+            <column name="OID" type="integer" defaultValueComputed="nextval('categorie_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="titre" type="VARCHAR(255)"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="Categorie-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="categorie_primary_index"
+                tableName="categorie"/>
+        </preConditions>
+
+        <dropIndex indexName="categorie_primary_index" tableName="categorie"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-categorie" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="categorie_idx_version" tableName="categorie">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="categorie_idx_create" tableName="categorie">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="categorie_idx_modified" tableName="categorie">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="categorie_idx_version_create" tableName="categorie">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="categorie_idx_modified_idx_last_modified" tableName="categorie">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="categorie_idx_created_by" tableName="categorie">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="categorie_idx_titre" tableName="categorie">
+	<column name="titre"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-categorie" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="categorie" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="categorie">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+    <changeSet id="add-col-titre-on-categorie" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="categorie" columnName="titre"/></not>
+        </preConditions>
+        <addColumn tableName="categorie">
+                    <column name="titre" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-idx-titre-on-categorie" author="system" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="categorie" columnName="titre"/>
+        </preConditions>
+        <sql dbms="postgresql">CREATE INDEX IF NOT EXISTS categorie_idx_titre ON categorie ("titre")</sql>
+        <sql dbms="h2">CREATE INDEX IF NOT EXISTS categorie_idx_titre ON categorie (titre)</sql>
+    </changeSet>
+<changeSet id="1" author="Categorie-schema-composition">
+    <validCheckSum>ANY</validCheckSum>
+    <insert tableName="T_BUSINESS_RULES">
+        <column name="EVENT_NAME" value="POST_CREATE_CATEGORIE"/>
+        <column name="BUSINESSRULE_IDENTIFIER" value="CategorieCreationSetParentRule"/>
+        <column name="ISACTIVE" value="1"/>
+        <column name="BR_ORDER" value="1"/>
+        <column name="ISVETOABLE" value="1"/>
+        <column name="DESCRIPTION" value="Set parent of the entity"/>
+        <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Categorie"/>
+        <column name="BR_RULE" value="CategorieCreationSetParentRule"/>
+        <column name="CONTAINER_OID" valueComputed="(select oid from T_CONTAINER where path='/')"/>
+    </insert>
+</changeSet>
+
+<changeSet id="2" author="Categorie-schema-composition">
+    <validCheckSum>ANY</validCheckSum>
+    <addColumn tableName="categorie">
+        <column name="one_to_many_child_parent_fk_oid" type="BIGINT"/>
+    </addColumn>
+</changeSet>
+
+<changeSet id="3" author="Categorie-schema-composition">
+    <validCheckSum>ANY</validCheckSum>
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="EVENT_NAME" value="POST_DELETE_CATEGORIE"/>
+            <column name="BUSINESSRULE_IDENTIFIER" value="CategorieRecursiveDeleteChildrenRule"/>
+            <column name="ISACTIVE" value="1"/>
+            <column name="BR_ORDER" value="1"/>
+            <column name="ISVETOABLE" value="1"/>
+            <column name="DESCRIPTION" value="Delete all children"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Categorie"/>
+            <column name="BR_RULE" value="CategorieRecursiveDeleteChildrenRule"/>
+            <column name="CONTAINER_OID" valueComputed="(select oid from T_CONTAINER where path='/')"/>
+    </insert>
+</changeSet>
+
+
+    <changeSet id="6" author="Categorie-schema-thumbed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="categorie">
+            <column name="thumbnail_oid" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint  baseColumnNames="thumbnail_oid"
+                                  baseTableName="categorie"
+                                  constraintName="Categorie_thumbed_thumbnail_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="T_THUMBNAIL_HOLDER"/>
+    </changeSet>
+</databaseChangeLog>
+

@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+ <changeSet author="Produit-type" id="1">
+ <validCheckSum>ANY</validCheckSum>
+ <insert tableName="T_SOFTTYPE">
+            <column name="display_name" value="ProduitType" />
+            <column name="logical_name" value="ProduitType"/>
+            <column name="logical_path" value="com.katappult.online.types.ProduitType"/>
+            <column name="base_class" value="com.katappult.cloud.platform.generated.model.Produit"/>
+            <column name="is_instanciable" value="1"/>
+            <column name="is_enabled" value="1"/>
+            <column name="discrimn_col" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="parent_id" valueComputed="NULL" />
+            <column name="lifecycle_master_id" valueComputed="(select oid from t_lifecyclemaster where name='Produit lifecycle')"/>
+        </insert>
+ 
+ </changeSet>
+
+</databaseChangeLog>

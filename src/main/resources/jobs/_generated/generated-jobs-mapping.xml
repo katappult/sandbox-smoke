@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jobMappingPathResolver>
+
+
+    <jobMappingPath job="standardBatchExport" type="manageProduit" mappingFilePath="classpath:/export/_generated/produit-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageProduit" mappingFilePath="classpath:/import/_generated/produit-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCategorie" mappingFilePath="classpath:/export/_generated/categorie-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCategorie" mappingFilePath="classpath:/import/_generated/categorie-import-mapping.xml"/>
+</jobMappingPathResolver>

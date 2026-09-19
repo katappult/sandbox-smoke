@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappingFile>
+    <command name="ADD_PRODUIT" targetEntity="com.katappult.cloud.platform.generated.model.Produit"
+             writers-ref="ProduitBatchWriter" processors-ref="VLCSVToBeanProcessor">
+
+        <column id="command" mandatory="true" maxLength="255" />
+        <column id="containerInfo" mandatory="true" propertyEditor="ContainerInfoByLogicalPathEditor"/>
+        
+        <column id="titre" mandatory="true" maxLength="255"/>
+        <column id="description" mandatory="true" maxLength="255"/>
+        <column id="prix" mandatory="true" maxLength="255"/>
+        <column id="enStock" mandatory="true" maxLength="255"/>
+        <!-- IMPORT_ATTRIBUTES_FOR_CREATE -->
+    </command>
+
+    <command name="UPDATE_PRODUIT" targetEntity="com.katappult.cloud.platform.generated.model.Produit"
+             writers-ref="ProduitBatchWriter" processors-ref="VLCSVToBeanProcessor">
+
+        <column id="command" mandatory="true" maxLength="255" />
+        <column id="fullId" mandatory="true" externalAttribute="true"/>
+
+        <column id="titre" mandatory="true" maxLength="255"/>
+        <column id="description" mandatory="true" maxLength="255"/>
+        <column id="prix" mandatory="true" maxLength="255"/>
+        <column id="enStock" mandatory="true" maxLength="255"/>
+        <!-- IMPORT_ATTRIBUTES_FOR_UPDATE -->
+    </command>
+</mappingFile>
