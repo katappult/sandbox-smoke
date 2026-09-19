@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Produit-export" id="1">
+        <insert tableName="T_EXPORT_CONFIG">
+            <column name="container_oid" value="1"/>
+            <column name="name" value="Export des produit (FOR UPDATE)"/>
+            <column name="type" value="manageProduit"/>
+            <column name="job" value="standardBatchExport"/>
+            <column name="command" value="EXPORT_FOR_UPDATE"/>
+            <column name="script_file" value="/export/_generated/produit-export.sql"/>
+        </insert>
+        <insert tableName="T_EXPORT_CONFIG">
+            <column name="container_oid" value="1"/>
+            <column name="name" value="Export des produit (FLAT)"/>
+            <column name="type" value="manageProduit"/>
+            <column name="job" value="standardBatchExport"/>
+            <column name="command" value="EXPORT"/>
+            <column name="script_file" value="/export/_generated/produit-export.sql"/>
+        </insert>
+
+        <insert tableName="T_EXPORT">
+            <column name="config_oid" valueComputed="(select oid from T_EXPORT_CONFIG where name='Export des produit (FOR UPDATE)')"/>
+            <column name="name" value="Export automatique des produit"/>
+            <column name="execution" value="0 0/30 * * * ?"/>
+            <column name="notifications" value="NULL"/>
+            <column name="email_template" value="NULL"/>
+            <column name="container_oid" value="1"/>
+            <column name="internal_name" value="EXPORT_PRODUIT"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

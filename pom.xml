@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.katappult</groupId>
             <artifactId>katappult-core</artifactId>
-            <version>@{katappult-platform-release-version-for-archetype}</version>
+            <version>4.25</version>
         </dependency>
 
         <dependency>

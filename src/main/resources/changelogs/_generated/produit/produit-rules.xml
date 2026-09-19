@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet author="produit-rule" id="1">
+        <validCheckSum>ANY</validCheckSum>
+        <loadData tableName="T_BUSINESS_RULES" file="/changelogs/_generated/produit/datas/produit-rules.csv" quotchar="'" separator=";" />
+        <loadData tableName="T_BUSINESS_RULES_EVENT_MAPPING" file="/changelogs/_generated/produit/datas/produit-event-mapping.csv" quotchar="'" separator=";" />
+    </changeSet>
+
+</databaseChangeLog>

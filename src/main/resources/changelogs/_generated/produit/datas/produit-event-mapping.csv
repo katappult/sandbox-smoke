@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PreCreateProduit
+PRE_DELETE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PreDeleteProduit
+PRE_UPDATE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PreUpdateProduit
+POST_CREATE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PostCreateProduit
+POST_DELETE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PostDeleteProduit
+POST_UPDATE_PRODUIT;com.katappult.cloud.platform.generated.model.event.PostUpdateProduit
