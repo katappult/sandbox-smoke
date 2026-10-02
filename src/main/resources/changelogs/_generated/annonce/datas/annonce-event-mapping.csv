@@ -1,0 +1,7 @@
+event_key;event_class
+PRE_CREATE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PreCreateAnnonce
+PRE_DELETE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PreDeleteAnnonce
+PRE_UPDATE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PreUpdateAnnonce
+POST_CREATE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PostCreateAnnonce
+POST_DELETE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PostDeleteAnnonce
+POST_UPDATE_ANNONCE;com.katappult.cloud.platform.generated.model.event.PostUpdateAnnonce

@@ -1,0 +1,47 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="6" author="Annonce-many-to-one-author-useraccount">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="ANNONCE">
+            <column name="many_to_one_author_fk_oid" type="BIGINT"/>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="6" author="Categorie-one-to-many-produits-produit">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="PRODUIT">
+            <column name="one_to_many_categorie_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="Categorie-one-to-many-produit-fk">
+        <validCheckSum>ANY</validCheckSum>
+        <addForeignKeyConstraint  baseColumnNames="one_to_many_categorie_fk_oid"
+                                  baseTableName="PRODUIT"
+                                  constraintName="Categorie_many_to_one_produit_categorie_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="categorie"/>
+    </changeSet>
+
+    <changeSet id="6" author="Produit-one-to-many-annonces-annonce">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="ANNONCE">
+            <column name="one_to_many_produit_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="Produit-one-to-many-annonce-fk">
+        <validCheckSum>ANY</validCheckSum>
+        <addForeignKeyConstraint  baseColumnNames="one_to_many_produit_fk_oid"
+                                  baseTableName="ANNONCE"
+                                  constraintName="Produit_many_to_one_annonce_produit_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="produit"/>
+    </changeSet>
+</databaseChangeLog>
