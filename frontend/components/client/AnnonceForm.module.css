@@ -1,0 +1,28 @@
+.form_container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg, 8px);
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.05));
+}
+
+.form_title {
+    color: var(--text-primary);
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+}
+
+.submit_button {
+    background: var(--color-1);
+    border-color: var(--color-1);
+    color: var(--on-primary, #fff);
+}
+
+.submit_button:hover,
+.submit_button:focus {
+    background: var(--client-accent-hover, var(--color-1));
+    border-color: var(--client-accent-hover, var(--color-1));
+    color: var(--on-primary, #fff);
+}

@@ -417,7 +417,6 @@
   "contact.state_label": "État",
   "contact.contacts_section": "Coordonnées",
   "contact.contacts_section_desc": "Adresse postale, téléphones et emails",
-
   "images.view_carousel": "Carrousel",
   "images.view_grid": "Grille",
   "images.view_strip": "Bande",
@@ -425,12 +424,10 @@
   "images.manage": "Gérer les illustrations",
   "images.illustration_alt": "Illustration {{n}}",
   "images.add_illustrations": "Ajouter des illustrations",
-
   "lifecycle.status_label": "Statut",
   "lifecycle.confirm_title": "Modifier le statut",
   "lifecycle.confirm_desc": "Êtes-vous sûr de vouloir modifier le statut de cet élément ?",
   "lifecycle.transition_btn": "Transition → {{status}}",
-
   "lifecycle.current": "Actuel",
   "lifecycle.go_to": "Passer à",
   "lifecycle.confirm_transition_title": "Confirmer la transition",
@@ -443,7 +440,6 @@
   "lifecycle.no_history": "Aucun changement de statut enregistré",
   "lifecycle.creation": "Création",
   "lifecycle.status_section": "Statut",
-
   "lifecycle.current_status": "Statut actuel",
   "lifecycle.available_actions": "Actions disponibles",
   "lifecycle.confirm_status_change_title": "Confirmer le changement de statut",
@@ -451,11 +447,9 @@
   "lifecycle.creation_record": "Création du dossier",
   "lifecycle.section_title": "Cycle de vie",
   "lifecycle.section_desc": "Cycle de vie et historique des transitions",
-
   "localisation.title": "Localisation",
   "localisation.latitude": "Latitude",
   "localisation.longitude": "Longitude",
-
   "common.imported_count": "Importées",
   "common.skipped_count": "Ignorées",
   "common.duplicates_count": "Dupliquées",
@@ -466,10 +460,8 @@
   "common.columns_found_expected": "{{found}} colonne(s) trouvée(s), {{expected}} attendue(s)",
   "common.data_type_groupes": "Groupes",
   "common.data_type_permissions": "Permissions",
-
   "common.import_csv_title": "Import {{entity}}",
   "common.import_csv_desc": "Complétez le fichier {{file}} puis téléversez-le ci-dessous pour importer vos données.",
-
   "common.upload_failed": "Échec du téléversement de",
   "common.upload_first": "Veuillez d'abord sélectionner un fichier",
   "common.importing": "Importation en cours...",
@@ -499,7 +491,6 @@
   "common.guide": "Guide",
   "common.car_rental": "Location de voiture",
   "common.excursion": "Excursion",
-
   "media.filter_all": "Tous",
   "media.filter_images": "Images",
   "media.filter_videos": "Vidéos",
@@ -534,7 +525,6 @@
   "media.rename_ok": "Renommer",
   "media.modal_title": "Médiathèque",
   "media.search_placeholder": "Rechercher...",
-
   "notif.empty_title": "Aucune notification",
   "notif.empty_desc": "Vous n'avez pas de notifications pour le moment.",
   "notif.delete_title": "Supprimer",
@@ -546,14 +536,12 @@
   "notif.settings_btn_title": "Paramètres des notifications",
   "notif.close_title": "Fermer",
   "notif.fcm_token": "Token FCM",
-
   "rc.checkout": "Checkout",
   "rc.checkin": "Checkin",
   "rc.undo_checkout": "Annuler le checkout",
   "rc.revise": "Réviser",
   "rc.to_working_copy": "Vers la copie de travail",
   "rc.to_latest_version": "Vers la dernière version",
-
   "menu.group_administration": "Administration",
   "menu.group_catalogue": "Catalogue",
   "menu.group_navigation": "Navigation",
@@ -567,7 +555,6 @@
   "menu.mailing": "Mailing",
   "menu.categories": "Catégories",
   "menu.produits": "Produits",
-
   "catalogue.categories_title": "Catégories",
   "catalogue.categories_desc": "Mettez en avant et activez les catégories du catalogue.",
   "catalogue.produits_title": "Produits",
@@ -594,27 +581,22 @@
   "catalogue.update_success": "Élément mis à jour",
   "catalogue.update_error": "Échec de la mise à jour",
   "catalogue.load_error": "Impossible de charger le catalogue.",
-
   "my_account.tab_profile": "Mon compte",
   "my_account.tab_password": "Réinitialiser le mot de passe",
   "my_account.tab_twofa": "Double authentification",
   "my_account.nickname_label": "Pseudo",
-
   "common.update": "Mettre à jour",
-
   "reset_password.current_placeholder": "Mot de passe actuel",
   "reset_password.new_label": "Nouveau mot de passe",
   "reset_password.new_placeholder": "Nouveau mot de passe",
   "reset_password.confirm_label": "Confirmer le mot de passe",
   "reset_password.confirm_placeholder": "Confirmer le mot de passe",
   "reset_password.update_btn": "Mettre à jour",
-
   "update_password.current_placeholder": "Saisir votre mot de passe actuel",
   "update_password.new_placeholder": "Saisir votre nouveau mot de passe",
   "update_password.confirm_placeholder": "Confirmer votre mot de passe",
   "update_password.invalid": "Mot de passe invalide",
   "update_password.update_btn": "Mettre à jour le mot de passe",
-
   "twofa.confirm": "Confirmer",
   "twofa.update_phone": "Modifier le numéro",
   "twofa.validate": "Valider",
@@ -633,27 +615,22 @@
   "twofa.disable_warning": "Désactiver la 2FA réduira la sécurité de votre compte",
   "twofa.enable_success": "Double authentification activée",
   "twofa.disable_success": "Double authentification désactivée",
-
   "header_menu.my_profile": "Mon profil",
   "header_menu.light_mode": "Mode clair",
   "header_menu.dark_mode": "Mode sombre",
   "header_menu.connected_devices": "Appareils connectés",
   "header_menu.appearance_language": "Apparence et langue",
   "header_menu.logout": "Déconnexion",
-
   "contact.phone_display": "Tél : {{value}}",
   "contact.email_display": "Email : {{value}}",
   "contact.add_address_btn": "Ajouter une adresse",
   "contact.modal_add_address": "Ajouter une adresse",
   "contact.edit_address_btn": "Modifier l'adresse",
-
   "table.empty_title": "Aucun élément trouvé",
   "table.empty_desc": "Il n'existe aucun élément pour le moment. Créez-en un pour commencer.",
-
   "common.field_required": "Ce champ est requis",
   "common.copied": "Copié !",
   "common.elements_count": "{{count}} élément(s)",
-
   "file.filename_col": "Nom du fichier",
   "file.action_col": "Action",
   "file.delete_file_confirm": "Êtes-vous sûr de supprimer ce fichier ?",
@@ -666,22 +643,18 @@
   "file.upload_drag_text": "Glissez-déposez un fichier ici ou cliquez pour téléverser",
   "file.choose_file": "Choisir un fichier",
   "file.size_max": "Taille max : {{size}} Mo",
-
   "app.download_error": "Erreur de téléchargement de l'application",
   "app.ios_unavailable": "Application non disponible sur iOS",
   "app.mobile_title": "Application Mobile",
   "app.mobile_desc": "Profitez de toutes les fonctionnalités de notre service directement depuis votre téléphone. Téléchargez notre application maintenant sur Android ou iOS !",
   "app.download_android": "Télécharger pour Android",
   "app.download_ios": "Télécharger pour iOS",
-
   "theme.switch_to_light": "Passer en mode clair",
   "theme.switch_to_dark": "Passer en mode sombre",
-
   "users.col_nickname": "Pseudo",
   "users.col_email": "Email",
   "users.col_joined": "Inscrit le",
   "users.col_last_login": "Dernière connexion",
-
   "admin.groups_title": "Groupes",
   "admin.groups_desc": "Gérez les groupes, leurs membres et leurs permissions.",
   "admin.groups_new_btn": "Nouveau groupe",
@@ -697,13 +670,10 @@
   "admin.theme_desc": "Personnalisez l'interface en choisissant un thème et la langue d'affichage.",
   "admin.users_title": "Gestion des utilisateurs",
   "admin.users_desc": "Administrez les comptes utilisateurs, leurs rôles et leurs accès.",
-
   "prefs.user_title": "Mes préférences",
   "prefs.user_desc": "Personnalisez votre expérience en configurant vos préférences utilisateur.",
-
   "profile.account_title": "Mon compte",
   "profile.account_desc": "Gérez vos informations personnelles, vos identifiants et vos paramètres de sécurité.",
-
   "status.NEW": "Nouveau",
   "status.DRAFT": "Brouillon",
   "status.ARCHIVED": "Archivé",
@@ -762,28 +732,23 @@
   "status.ACCEPTED_action": "Accepter",
   "status.REFUSED_action": "Refuser",
   "status.CLOSED_action": "Fermer",
-
   "sidebar.expand_title": "Développer",
   "sidebar.help_link": "Aide",
   "sidebar.logout_link": "Déconnexion",
   "sidebar.minimize_title": "Réduire",
-
   "topbar.search_placeholder": "Rechercher...",
   "topbar.login_btn": "Connexion",
   "topbar.register_btn": "S'inscrire",
   "topbar.role_admin": "Admin",
-
   "auth_layout.tagline": "Vibe Codez Vos Applications Web et Mobiles.",
   "auth_layout.feature_web": "Interfaces Web avec ReactJS, NextJS",
   "auth_layout.feature_mobile": "Interfaces Mobiles avec Flutter",
   "auth_layout.feature_backend": "Backend robuste avec Java, Spring & PostgreSQL",
   "auth_layout.feature_ai": "Assistance intelligente par IA à chaque étape",
   "auth_layout.feature_deploy": "Déploiement simplifié et scalable",
-
   "auth.login_page_title": "Connexion",
   "auth.lostpass_page_title": "Mot de passe oublié",
   "auth.register_page_title": "Créer un compte",
-
   "menu.moderation": "Modération",
   "admin.annonces_title": "Modération des annonces",
   "admin.annonces_desc": "Validez ou refusez les annonces en attente de publication.",
@@ -808,5 +773,35 @@
   "moderation.detail_description": "Description",
   "moderation.detail_produit": "Produit",
   "moderation.detail_categorie": "Catégorie",
-  "moderation.detail_prix": "Prix"
+  "moderation.detail_prix": "Prix",
+
+  "annonce.form_title": "Déposer une annonce",
+  "annonce.form_titre": "Titre",
+  "annonce.form_titre_placeholder": "Ex : Miel de printemps",
+  "annonce.form_description": "Description",
+  "annonce.form_description_placeholder": "Décrivez votre produit…",
+  "annonce.form_prix": "Prix",
+  "annonce.form_prix_placeholder": "0.00",
+  "annonce.form_produit": "Produit",
+  "annonce.form_produit_placeholder": "Sélectionnez un produit",
+  "annonce.form_photo": "Photo",
+  "annonce.form_photo_placeholder": "Ajouter une photo",
+  "annonce.form_submit": "Déposer l'annonce",
+  "annonce.form_loading": "Dépôt en cours…",
+  "annonce.create_success": "Annonce créée avec succès",
+  "annonce.create_error": "Échec de la création de l'annonce",
+  "annonce.thumb_upload_error": "Échec de l'ajout de la photo",
+  "annonce.list_title": "Mes annonces",
+  "annonce.list_empty": "Aucune annonce pour le moment.",
+  "annonce.list_error": "Impossible de charger vos annonces.",
+  "annonce.col_photo": "Photo",
+  "annonce.col_titre": "Titre",
+  "annonce.col_produit": "Produit",
+  "annonce.col_prix": "Prix",
+  "annonce.col_statut": "Statut",
+  "annonce.col_refusal_reason": "Motif de refus",
+  "annonce.status.pending": "En attente",
+  "annonce.status.validated": "Validé",
+  "annonce.status.refused": "Refusé",
+  "annonce.no_refusal_reason": "—"
 }

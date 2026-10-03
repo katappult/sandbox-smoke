@@ -1,0 +1,30 @@
+.container {
+    padding: 24px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    color: var(--text-secondary);
+}
+
+.thumbnail {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--radius, 4px);
+    border: 1px solid var(--card-border);
+}
+
+.placeholder_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px dashed var(--card-border);
+    border-radius: var(--radius, 4px);
+    color: var(--text-muted);
+}

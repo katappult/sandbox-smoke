@@ -11,6 +11,7 @@ export default function StatusChip({label, large = true}){
         "Rejeté": {bg: "#fff4ed", color: "#c4320a", border: "#f9b8a0"},
         "Validé": {bg: "#ecfdf3", color: "#027a48", border: "#6ce9a6"},
         "Brouillon": {bg: "#f2f4f7", color: "#344054", border: "#d0d5dd"},
+        "Refusé": {bg: "#fff4ed", color: "#c4320a", border: "#f9b8a0"},
     };
 
     const DEFAULT_STYLE = {bg: "#f2f4f7", color: "#344054", border: "#d0d5dd"};
