@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+ <changeSet author="Annonce-type" id="1">
+ <validCheckSum>ANY</validCheckSum>
+ <insert tableName="T_SOFTTYPE">
+            <column name="display_name" value="AnnonceType" />
+            <column name="logical_name" value="AnnonceType"/>
+            <column name="logical_path" value="com.katappult.online.types.AnnonceType"/>
+            <column name="base_class" value="com.katappult.cloud.platform.generated.model.Annonce"/>
+            <column name="is_instanciable" value="1"/>
+            <column name="is_enabled" value="1"/>
+            <column name="discrimn_col" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="parent_id" valueComputed="NULL" />
+            <column name="lifecycle_config" value='{"initialState":"NEW","states":["NEW","ACCEPTED","REFUSED","CLOSED"]}'/>
+        </insert>
+ 
+ </changeSet>
+ 
+ <changeSet author="Annonce-type" id="lifecycle-transitions">
+ <validCheckSum>ANY</validCheckSum>
+        <sql dbms="h2">
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'SET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'SET_STATE', 'REFUSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'SET_STATE', 'REFUSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'ADMINSET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('REFUSED', 'ADMINSET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'ADMINSET_STATE', 'NEW', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'ADMINSET_STATE', 'CLOSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(RANDOM_UUID() AS VARCHAR(36)));
+        </sql>
+        <sql dbms="postgresql">
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'SET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'SET_STATE', 'REFUSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'SET_STATE', 'REFUSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('NEW', 'ADMINSET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('REFUSED', 'ADMINSET_STATE', 'ACCEPTED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'ADMINSET_STATE', 'NEW', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+            INSERT INTO T_LIFECYCLETRANSITION (from_state, action, to_state, type_oid, uid) VALUES ('ACCEPTED', 'ADMINSET_STATE', 'CLOSED', (SELECT oid FROM T_SOFTTYPE WHERE logical_path='com.katappult.online.types.AnnonceType'), CAST(gen_random_uuid() AS VARCHAR(36)));
+        </sql>
+ </changeSet>
+
+</databaseChangeLog>

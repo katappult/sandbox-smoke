@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20250101000000-annonce-lifecycle" author="dev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="T_SOFTTYPE"/>
+            <tableExists tableName="T_LIFECYCLETRANSITION"/>
+        </preConditions>
+
+        <update tableName="T_SOFTTYPE">
+            <column name="lifecycle_config"
+                    value='{"initialState":"EN_ATTENTE","states":["EN_ATTENTE","VALIDEE","REFUSEE"]}'/>
+            <where>logical_path = 'com.katappult.cloud.platform.generated.AnnonceType'</where>
+        </update>
+
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="type_oid"
+                    valueComputed="(SELECT oid FROM T_SOFTTYPE WHERE logical_path = 'com.katappult.cloud.platform.generated.AnnonceType')"/>
+            <column name="from_state" value="EN_ATTENTE"/>
+            <column name="to_state" value="VALIDEE;REFUSEE"/>
+            <column name="action" value="moderation"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

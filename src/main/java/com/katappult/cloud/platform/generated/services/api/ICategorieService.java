@@ -1,0 +1,46 @@
+package com.katappult.cloud.platform.generated.services.api;
+
+import com.katappult.core.utils.pagination.PageRequest;
+import com.katappult.core.utils.pagination.PageResult;
+import com.katappult.core.utils.UIAttributes;
+import java.util.*;
+import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.core.model.account.*;
+import com.katappult.cloud.platform.generated.model.queryspec.*;
+import java.util.*;
+
+
+public interface ICategorieService {
+
+    Optional<Categorie> findByIdOptional(Long id);
+
+    Categorie create(UIAttributes uiAttributes) ;
+
+    Categorie update(UIAttributes uiAttributes) ;
+
+    void delete(Categorie entity);
+
+    PageResult list(PageRequest pageRequest, Map<String, String> params);
+
+    PageResult search(CategorieQuerySpec querySpec, PageRequest pageRequest);
+
+    void batchCreateFromImport(Categorie entity);
+
+    void batchUpdateFromImport(Categorie transientEntity);
+
+    Categorie patch(Map<String, Object> json, Categorie entity);
+
+    
+    void addProduit(Categorie entity, Produit roleB);
+
+    List<Produit> getAllProduit(Categorie entity);
+
+    void removeProduit(Categorie entity, Produit roleB);
+
+    void removeAllProduit(Categorie entity);
+
+    PageResult navigateProduit(Categorie entity, PageRequest pageRequest);
+
+    Categorie getOneToManyProduitInverse(Produit entity);
+
+}

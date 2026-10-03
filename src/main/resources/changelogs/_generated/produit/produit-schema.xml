@@ -1,0 +1,181 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet id="1" author="Produit-schema-sequence">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions>
+             <not>
+                 <sequenceExists sequenceName="produit_oid_seq"/>
+             </not>
+          </preConditions>
+          <createSequence sequenceName="produit_oid_seq" incrementBy="3" startValue="11123"/>
+    </changeSet>
+
+	<changeSet id="1" author="Produit-schema">
+        <validCheckSum>ANY</validCheckSum>
+        <createTable tableName="produit">
+            <column name="OID" type="integer" defaultValueComputed="nextval('produit_oid_seq')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+
+            <column name="CREATE_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)" defaultValue="system">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"  defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="container_oid" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+
+                    <column name="active" type="INTEGER"/>
+        <column name="featured" type="INTEGER"/>
+        <column name="description" type="TEXT"/>
+        <column name="titre" type="VARCHAR(255)"/>
+<!--COLUMNS-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-index" author="Produit-schema-master">
+        <validCheckSum>ANY</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <indexExists
+                indexName="produit_primary_index"
+                tableName="produit"/>
+        </preConditions>
+
+        <dropIndex indexName="produit_primary_index" tableName="produit"/>
+    </changeSet>
+
+    <changeSet id="create-optimized-indexes-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+        <createIndex indexName="produit_idx_version" tableName="produit">
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_create" tableName="produit">
+            <column name="create_date"/>
+        </createIndex>
+        <createIndex indexName="produit_idx_modified" tableName="produit">
+            <column name="modified_date"/>
+        </createIndex>
+
+         <!-- Index version + create_date -->
+         <createIndex indexName="produit_idx_version_create" tableName="produit">
+             <column name="version"/>
+             <column name="create_date"/>
+         </createIndex>
+
+         <!-- Index modified_date + last_modified_by -->
+         <createIndex indexName="produit_idx_modified_idx_last_modified" tableName="produit">
+             <column name="modified_date"/>
+             <column name="last_modified_by"/>
+         </createIndex>
+
+         <!-- Index created_by -->
+         <createIndex indexName="produit_idx_created_by" tableName="produit">
+             <column name="created_by"/>
+         </createIndex>
+
+         <createIndex indexName="produit_idx_titre" tableName="produit">
+	<column name="titre"/>
+</createIndex>
+<createIndex indexName="produit_idx_featured" tableName="produit">
+	<column name="featured"/>
+</createIndex>
+<createIndex indexName="produit_idx_active" tableName="produit">
+	<column name="active"/>
+</createIndex>
+<!--COLUMNS_INDEX-->
+     </changeSet>
+
+     <changeSet id="add-col-uid-on-produit" author="system">
+        <validCheckSum>ANY</validCheckSum>
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="produit" columnName="UID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="produit">
+            <column name="UID" type="VARCHAR(36)"/>
+        </addColumn>
+     </changeSet>
+
+    <changeSet id="add-col-titre-on-produit" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="produit" columnName="titre"/></not>
+        </preConditions>
+        <addColumn tableName="produit">
+                    <column name="titre" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-idx-titre-on-produit" author="system" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="produit" columnName="titre"/>
+        </preConditions>
+        <sql dbms="postgresql">CREATE INDEX IF NOT EXISTS produit_idx_titre ON produit ("titre")</sql>
+        <sql dbms="h2">CREATE INDEX IF NOT EXISTS produit_idx_titre ON produit (titre)</sql>
+    </changeSet>
+    <changeSet id="add-col-description-on-produit" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="produit" columnName="description"/></not>
+        </preConditions>
+        <addColumn tableName="produit">
+                    <column name="description" type="TEXT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-col-featured-on-produit" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="produit" columnName="featured"/></not>
+        </preConditions>
+        <addColumn tableName="produit">
+                    <column name="featured" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-idx-featured-on-produit" author="system" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="produit" columnName="featured"/>
+        </preConditions>
+        <sql dbms="postgresql">CREATE INDEX IF NOT EXISTS produit_idx_featured ON produit ("featured")</sql>
+        <sql dbms="h2">CREATE INDEX IF NOT EXISTS produit_idx_featured ON produit (featured)</sql>
+    </changeSet>
+    <changeSet id="add-col-active-on-produit" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="produit" columnName="active"/></not>
+        </preConditions>
+        <addColumn tableName="produit">
+                    <column name="active" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-idx-active-on-produit" author="system" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="produit" columnName="active"/>
+        </preConditions>
+        <sql dbms="postgresql">CREATE INDEX IF NOT EXISTS produit_idx_active ON produit ("active")</sql>
+        <sql dbms="h2">CREATE INDEX IF NOT EXISTS produit_idx_active ON produit (active)</sql>
+    </changeSet>
+
+    <changeSet id="6" author="Produit-schema-thumbed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="produit">
+            <column name="thumbnail_oid" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint  baseColumnNames="thumbnail_oid"
+                                  baseTableName="produit"
+                                  constraintName="Produit_thumbed_thumbnail_fk_oid_constraint"
+                                  referencedColumnNames="oid"
+                                  referencedTableName="T_THUMBNAIL_HOLDER"/>
+    </changeSet>
+</databaseChangeLog>
+
