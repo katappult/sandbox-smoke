@@ -31,4 +31,16 @@ public interface IProduitService {
     Produit patch(Map<String, Object> json, Produit entity);
 
     
+    void addAnnonce(Produit entity, Annonce roleB);
+
+    List<Annonce> getAllAnnonce(Produit entity);
+
+    void removeAnnonce(Produit entity, Annonce roleB);
+
+    void removeAllAnnonce(Produit entity);
+
+    PageResult navigateAnnonce(Produit entity, PageRequest pageRequest);
+
+    Produit getOneToManyAnnonceInverse(Annonce entity);
+
 }

@@ -132,4 +132,62 @@ public class ProduitServiceImpl implements IProduitService {
     }
 
     
+
+
+    @Override
+    public List<Annonce> getAllAnnonce(final Produit entity) {
+        QAnnonce qAnnonce = new QAnnonce("roleB");
+
+        return persistableRepository.selectFrom(qAnnonce)
+                .where(qAnnonce.produit().eq(entity))
+                .fetch();
+    }
+
+
+    @Override
+    @Transactional(propagation =  Propagation.REQUIRED)
+    public void addAnnonce(final Produit entity, final Annonce roleB) {
+        Produit refreshed = persistableService.refresh(entity);
+        Annonce refreshedToOne = persistableService.refresh(roleB);
+        refreshed.addToAnnonces(refreshedToOne);
+
+        persistableService.mergeWithoutEvent(refreshed);
+    }
+
+    @Override
+    @Transactional(propagation =  Propagation.REQUIRED)
+    public void removeAllAnnonce(final Produit entity) {
+        Produit refreshed = persistableService.refresh(entity);
+
+        for(Annonce  roleB: refreshed.getAnnonces()){
+            roleB.setProduit(null);
+        }
+
+        refreshed.getAnnonces().clear();
+        persistableService.mergeWithoutEvent(refreshed);
+    }
+
+    @Override
+    @Transactional(propagation =  Propagation.REQUIRED)
+    public void removeAnnonce(final Produit entity, final Annonce roleB) {
+        Produit refreshed = persistableService.refresh(entity);
+        refreshed.getAnnonces().remove(roleB);
+        persistableService.mergeWithoutEvent(refreshed);
+
+        Annonce roleBRefreshed = persistableService.refresh(roleB);
+        roleBRefreshed.setProduit(null);
+        persistableService.mergeWithoutEvent(roleBRefreshed);
+    }
+
+    @Override
+    public PageResult navigateAnnonce(final Produit entity, final PageRequest pageRequest) {
+       PageResult pageResult = repository.navigateAnnonce(entity, pageRequest);
+       return pageResult;
+    }
+
+    @Override
+    public Produit getOneToManyAnnonceInverse(final Annonce entity) {
+        return repository.getOneToManyAnnonceInverse(entity);
+    }
+
 }

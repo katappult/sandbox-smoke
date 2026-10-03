@@ -33,6 +33,7 @@ public class Produit extends BusinessObject implements Serializable , IThumbed{
     private Boolean active;
     private ThumbInfo thumbInfo;
 	private Categorie categorie;
+	private List<Annonce> annonces;
 
 
     @Override
@@ -81,6 +82,26 @@ public class Produit extends BusinessObject implements Serializable , IThumbed{
 
     public void setCategorie(final Categorie categorie) {
         this.categorie = categorie;
+    }
+
+
+		@TransferIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="produit")
+    public List<Annonce> getAnnonces() {
+        return annonces;
+    }
+
+    public void setAnnonces(final List<Annonce> annonces) {
+        this.annonces = annonces;
+    }
+
+    public void addToAnnonces(Annonce entity){
+      if(annonces == null){
+        annonces = new ArrayList();
+      }
+
+      annonces.add(entity);
+      entity.setProduit(this);
     }
 
 

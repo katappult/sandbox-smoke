@@ -68,6 +68,38 @@ public class ProduitRepositoryImpl implements ProduitRepository {
     
 
     @Override
+    public PageResult navigateAnnonce(final Produit entity, final PageRequest pageRequest) {
+         QAnnonce qAnnonce = new QAnnonce("entity");
+
+         JPAQuery query = repository
+                .jpaQuery()
+                .select(qAnnonce)
+                .from(qAnnonce)
+                .where(qAnnonce.produit().eq(entity));
+
+         return repository.readPage(query, qAnnonce, pageRequest);
+    }
+
+    @Override
+    public Produit getOneToManyAnnonceInverse(final Annonce entity) {
+        QAnnonce qAnnonce = new QAnnonce("entity");
+        QProduit qProduit =  new QProduit("produit");
+
+        Produit result = repository
+                .jpaQuery()
+                .select(qProduit)
+                .from(qAnnonce, qProduit)
+                .where(
+                    qAnnonce.oid.eq(entity.getOid()),
+                    qAnnonce.produit().eq(qProduit)
+                )
+                .fetchOne();
+
+        return result;
+    }
+
+
+    @Override
     public Produit findById(Long id) {
         return (Produit) repository.findByIdNotNull(id, Produit.class);
     }

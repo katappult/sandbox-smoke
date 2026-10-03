@@ -8,4 +8,7 @@
 
     <jobMappingPath job="standardBatchExport" type="manageProduit" mappingFilePath="classpath:/export/_generated/produit-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageProduit" mappingFilePath="classpath:/import/_generated/produit-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageAnnonce" mappingFilePath="classpath:/export/_generated/annonce-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageAnnonce" mappingFilePath="classpath:/import/_generated/annonce-import-mapping.xml"/>
 </jobMappingPathResolver>

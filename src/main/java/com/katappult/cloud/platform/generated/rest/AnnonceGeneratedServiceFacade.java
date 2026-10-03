@@ -24,7 +24,7 @@ import com.katappult.core.utils.UIAttributes;
 import jakarta.inject.Provider;
 import com.katappult.core.utils.ObjectIdentifierUtils;
 import com.katappult.core.rest.BaseKatappultRestService;
-import com.katappult.cloud.platform.generated.model.queryspec.ProduitQuerySpec;
+import com.katappult.cloud.platform.generated.model.queryspec.AnnonceQuerySpec;
 import com.katappult.cloud.platform.generated.model.rest.*;
 import com.katappult.core.rest.model.*;
 import com.katappult.cloud.platform.generated.model.*;
@@ -33,22 +33,22 @@ import com.katappult.core.model.account.UserAccount.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import java.util.*;
 
-import com.katappult.cloud.platform.generated.services.api.IProduitService;
+import com.katappult.cloud.platform.generated.services.api.IAnnonceService;
 import com.katappult.cloud.platform.generated.model.*;
 
 
 
-@io.swagger.v3.oas.annotations.tags.Tag(name = "Produit", description = "Manages Produit and its relations. ")
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Annonce", description = "Manages Annonce and its relations. ")
 @SecurityRequirement(name = "bearerAuth")
 @RestController
-@RequestMapping("produit")
-public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
+@RequestMapping("annonce")
+public class AnnonceGeneratedServiceFacade extends BaseKatappultRestService {
 
-    private final IProduitService service;
+    private final IAnnonceService service;
     private final IPersistableService persistableService;
     private final Provider<UIAttributes> uiAttributesProvider;
 
-    public ProduitGeneratedServiceFacade(IProduitService service, IPersistableService persistableService,
+    public AnnonceGeneratedServiceFacade(IAnnonceService service, IPersistableService persistableService,
         Provider<UIAttributes> uiAttributesProvider) {
 
       this.service = service;
@@ -57,64 +57,65 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
     }
 
 
-   @Operation(summary = "Create Produit",
-                  description = "Creates a new Produit."
+   @Operation(summary = "Create Annonce",
+                  description = "Creates a new Annonce."
                           + "All relationships of an entity can be specified in the form either by their fullId (for automatic processing) or by their uid.")
    @ApiResponses({
        @ApiResponse(responseCode = "200", description = "Entity created successfully",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class))),
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class))),
        @ApiResponse(responseCode = "200", description = "Validation error — response body contains error messages",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class)))
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class)))
    })
    @PostMapping
    @Transactional(propagation = Propagation.REQUIRES_NEW)
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'CREATE_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ProduitRestResponse create(@RequestBody ProduitRestRequest request) {
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'CREATE_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public AnnonceRestResponse create(@RequestBody AnnonceRestRequest request) {
 
-       ProduitRestResponse response = new ProduitRestResponse();
+       AnnonceRestResponse response = new AnnonceRestResponse();
 
        UIAttributes uiAttributes = uiAttributesProvider.get();
        uiAttributes.from(request);
 
-       // ENRICH CREATE ENDPOINT
-       Produit created = service.create(uiAttributes);
+       uiAttributes.additionalAttributes("creatorFullId", request.getParam("creatorFullId"));
+// ENRICH CREATE ENDPOINT
+       Annonce created = service.create(uiAttributes);
 
        return response.populateFromEntity(created);
    }
 
 
-   @Operation(summary = "Get Produit details", description = "Returns the full data of the entity.")
+   @Operation(summary = "Get Annonce details", description = "Returns the full data of the entity.")
    @ApiResponses({
        @ApiResponse(responseCode = "200", description = "Entity found",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class))),
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class))),
        @ApiResponse(responseCode = "404", description = "Entity not found")
    })
    @GetMapping("/{uid}")
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'READ_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ProduitRestResponse details(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'READ_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public AnnonceRestResponse details(
            @Parameter(description = "Identifier (the `uid` field from a previous response)", required = true)
            @PathVariable(name = "uid") final String uid) {
-       ProduitRestResponse response = new ProduitRestResponse();
-       Produit entity = getPersistable(uid, Produit.class);
+       AnnonceRestResponse response = new AnnonceRestResponse();
+       Annonce entity = getPersistable(uid, Annonce.class);
        return response.populateFromEntity(entity);
    }
 
 
-   @Operation(summary = "Bulk delete Produit",
+   @Operation(summary = "Bulk delete Annonce",
               description = "Deletes multiple entities at once. The request body must contain a list of uuid.")
    @ApiResponses({
        @ApiResponse(responseCode = "200", description = "Entity deleted successfully"),
        @ApiResponse(responseCode = "404", description = "One or more identifiers not found")
    })
    @DeleteMapping(value = "/deleteElements")
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'DELETE_PRODUIT') or hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_ADMIN')")
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'DELETE_ANNONCE') or hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_ADMIN')")
    public SuccessRestResponse deleteElements(@RequestBody DeleteRequest request) {
 
        List<Persistable> toDelete = new ArrayList<>();
 
        for (int i = 0; i < request.getIdentifiers().size(); i++) {
            String uid = request.getIdentifiers().get(i);
-           Persistable object = getPersistable(uid, Produit.class);
+           Persistable object = getPersistable(uid, Annonce.class);
            toDelete.add(object);
        }
 
@@ -131,11 +132,11 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
    })
    @DeleteMapping("/{uid}")
    @Transactional(propagation = Propagation.REQUIRES_NEW)
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'DELETE_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'DELETE_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
    public SuccessRestResponse delete(
            @Parameter(description = "Uid of the entity", required = true)
            @PathVariable(name = "uid") final String uid) {
-       Produit entity = getPersistable(uid, Produit.class);
+       Annonce entity = getPersistable(uid, Annonce.class);
        service.delete(entity);
        return SuccessRestResponse.newOne();
    }
@@ -146,20 +147,20 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
                       + "Patchable entity raw fields, do not include relation fields.")
    @ApiResponses({
        @ApiResponse(responseCode = "200", description = "Entity updated",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class))),
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class))),
        @ApiResponse(responseCode = "404", description = "Entity not found")
    })
    @PatchMapping("/{uid}")
    @Transactional(propagation = Propagation.REQUIRES_NEW)
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'UPDATE_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ProduitRestResponse patch(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'UPDATE_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public AnnonceRestResponse patch(
            @Parameter(description = "Identifier of the entity", required = true)
            @PathVariable(name = "uid") final String uid,
            @Parameter(description = "Json containing attributes to patch", required = true)
            @RequestBody Map<String, Object> json) {
-       Produit entity = getPersistable(uid, Produit.class);
+       Annonce entity = getPersistable(uid, Annonce.class);
        entity = service.patch(json, entity);
-       return new ProduitRestResponse().populateFromEntity(entity);
+       return new AnnonceRestResponse().populateFromEntity(entity);
    }
 
 
@@ -168,28 +169,28 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
                       + "**Warning:** the relation of the entity are not processed during update. ")
    @ApiResponses({
        @ApiResponse(responseCode = "200", description = "Entity updated",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class))),
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class))),
        @ApiResponse(responseCode = "400", description = "Validation error — response body contains error messages",
-                    content = @Content(schema = @Schema(implementation = ProduitRestResponse.class))),
+                    content = @Content(schema = @Schema(implementation = AnnonceRestResponse.class))),
        @ApiResponse(responseCode = "404", description = "Entity not found")
    })
    @PutMapping("/{uid}")
    @Transactional(propagation = Propagation.REQUIRES_NEW)
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'UPDATE_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ProduitRestResponse update(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'UPDATE_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public AnnonceRestResponse update(
            @Parameter(description = "Uid identifier", required = true)
            @PathVariable(name = "uid") final String uid,
-           @RequestBody ProduitRestRequest request) {
+           @RequestBody AnnonceRestRequest request) {
 
-       ProduitRestResponse response = new ProduitRestResponse();
+       AnnonceRestResponse response = new AnnonceRestResponse();
 
        UIAttributes uiAttributes = uiAttributesProvider.get();
        uiAttributes.from(request);
 
-       Produit entity = getPersistable(uid, Produit.class);
+       Annonce entity = getPersistable(uid, Annonce.class);
        uiAttributes.getTarget().setOid(entity.getOid());
 
-       Produit updated = service.update(uiAttributes);
+       Annonce updated = service.update(uiAttributes);
        return response.populateFromEntity(updated);
    }
 
@@ -201,8 +202,8 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
                       + "Sort syntax: `field` for ASC, `-field` for DESC.")
    @ApiResponse(responseCode = "200", description = "Paginated list of entities")
    @GetMapping(value = "/list")
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'LIST_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ListRestResponse<ProduitListRestModel> list(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'LIST_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public ListRestResponse<AnnonceListRestModel> list(
            @Parameter(description = "Page number (0-based)", example = "0") @RequestParam(name = "page", defaultValue = "0") int page,
            @Parameter(description = "Lifecycle state filter. Use `all` for no filter.") @RequestParam(name = "status", defaultValue = "all") String status,
            @Parameter(description = "Full-text search term (optional). When present, activates search mode.") @RequestParam(name = "searchTerm", defaultValue = "") String searchTerm,
@@ -217,7 +218,7 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
 
        PageResult pageResult;
        if (StringUtils.isNotBlank(searchTerm)) {
-           ProduitQuerySpec querySpec = new ProduitQuerySpec();
+           AnnonceQuerySpec querySpec = new AnnonceQuerySpec();
            querySpec.setSearchTerm_toQuery(searchTerm);
            querySpec.setSearchPage(page);
            querySpec.setSearchPageSize(pageSize);
@@ -227,7 +228,7 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
            pageResult = service.list(pageRequest, params);
        }
 
-       return new ListRestResponse<>(pageResult, ProduitListRestModel.class);
+       return new ListRestResponse<>(pageResult, AnnonceListRestModel.class);
    }
 
 
@@ -236,32 +237,32 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
    @ApiResponse(responseCode = "200", description = "List of matching entities")
    @GetMapping(value = "/listFromUids")
    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'SEARCH_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ListRestResponse<ProduitListRestModel> listFromUids(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'SEARCH_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public ListRestResponse<AnnonceListRestModel> listFromUids(
            @Parameter(description = "List of encoded identifiers (repeated parameter). Example: `?identifier=abc&identifier=def`", required = true)
            @RequestParam(name = "identifier") List<String> identifiers) {
        var list = identifiers.stream()
-               .map(uid -> getPersistable(uid, Produit.class))
+               .map(uid -> getPersistable(uid, Annonce.class))
                .toList();
-       return new ListRestResponse<>(list, ProduitListRestModel.class);
+       return new ListRestResponse<>(list, AnnonceListRestModel.class);
    }
 
 
    @Operation(summary = "Advanced search",
-              description = "Paginated search using a `ProduitQuerySpec` body. "
+              description = "Paginated search using a `AnnonceQuerySpec` body. "
                       + "Available fields: `searchTerm` (full-text), `searchPage` (0-based), `searchPageSize`, `selectedStates` (list of lifecycle states). "
                       + "Pagination is driven by the QuerySpec itself.")
    @ApiResponse(responseCode = "200", description = "Paginated search results")
    @PostMapping(value = "/advanced_search")
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'SEARCH_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ListRestResponse<ProduitListRestModel> advancedSearch(@RequestBody ProduitQuerySpec querySpec) {
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'SEARCH_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public ListRestResponse<AnnonceListRestModel> advancedSearch(@RequestBody AnnonceQuerySpec querySpec) {
 
        PageRequest pageRequest = new PageRequest.Builder()
                .page(querySpec.getSearchPage())
                .size(querySpec.getSearchPageSize()).build();
 
        PageResult pageResult = service.search(querySpec, pageRequest);
-       return new ListRestResponse<>(pageResult, ProduitListRestModel.class);
+       return new ListRestResponse<>(pageResult, AnnonceListRestModel.class);
    }
 
 
@@ -270,8 +271,8 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
                       + "Use `POST /advanced_search` for more granular criteria.")
    @ApiResponse(responseCode = "200", description = "Paginated search results")
    @GetMapping(value = "/search")
-   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'SEARCH_PRODUIT') or hasRole('ROLE_SUPERADMIN')")
-   public ListRestResponse<ProduitListRestModel> search(
+   @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'SEARCH_ANNONCE') or hasRole('ROLE_SUPERADMIN')")
+   public ListRestResponse<AnnonceListRestModel> search(
            @Parameter(description = "Full-text search term", required = true) @RequestParam(name = "searchTerm") String searchTerm,
            @Parameter(description = "Page number (0-based)", example = "0") @RequestParam(name = "page", defaultValue = "0") int page,
            @Parameter(description = "Lifecycle state filter. Use `all` for no filter.") @RequestParam(name = "status", defaultValue = "all") String status,
@@ -280,7 +281,7 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
 
        PageRequest pageRequest = new PageRequest(page, pageSize, sort);
 
-       ProduitQuerySpec querySpec = new ProduitQuerySpec();
+       AnnonceQuerySpec querySpec = new AnnonceQuerySpec();
        querySpec.setSearchTerm_toQuery(searchTerm);
        querySpec.setSearchPage(page);
        querySpec.setSearchPageSize(pageSize);
@@ -290,70 +291,100 @@ public class ProduitGeneratedServiceFacade extends BaseKatappultRestService {
        }
 
        PageResult pageResult = service.search(querySpec, pageRequest);
-       return new ListRestResponse<>(pageResult, ProduitListRestModel.class);
+       return new ListRestResponse<>(pageResult, AnnonceListRestModel.class);
    }
 
   
+  
+  @ApiResponse(responseCode = "200", description = "Paginated list of entities for the user")
+  @GetMapping(value = "/listItemsOfCreator")
+  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'READ_ANNONCE')")
+  public ListRestResponse<AnnonceListRestModel> listItemsOfCreator(
+          @Parameter(description = "Encoded identifier of the user (UserAccount)", required = true) @RequestParam("creatorUid") String creatorUid,
+          @Parameter(description = "Page number (0-based)", example = "0") @RequestParam(name = "page", defaultValue = "0") int page,
+          @Parameter(description = "Lifecycle state filter") @RequestParam(name = "status", defaultValue = "") String status,
+          @Parameter(description = "Number of items per page", example = "10") @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
+          @Parameter(description = "Optional sort field") @RequestParam(name = "sort", required = false) String sort) {
 
-  @PostMapping(value = "/{uid}/oneToManyAnnonce/{annonceUid}")
+      PageRequest pageRequest = new PageRequest.Builder().page(page).size(pageSize).build();
+      UserAccount creator = getPersistable(creatorUid, UserAccount.class);
+      Map params = new HashMap();
+      params.put("status", status);
+
+      PageResult pageResult = service.listItemsOfCreator(creator, pageRequest, params);
+      return new ListRestResponse<>(pageResult, AnnonceListRestModel.class);
+  }
+
+
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "Entity found",
+                   content = @Content(schema = @Schema(implementation = Annonce.class))),
+      @ApiResponse(responseCode = "404", description = "No Entity found for this element")
+  })
+  @GetMapping(value = "/singleItemOfCreator")
+  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'READ_ANNONCE')")
+  public AnnonceRestResponse singleItemOfCreator(
+          @Parameter(description = "Encoded identifier of the user (UserAccount)", required = true) @RequestParam("creatorUid") String creatorUid) {
+      UserAccount creator = getPersistable(creatorUid, UserAccount.class);
+      Annonce entity = service.getSingleItemOfCreator(creator);
+      return new AnnonceRestResponse().populateFromEntity(entity);
+  }
+
+
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "Relation updated",
+                   content = @Content(schema = @Schema(implementation = Annonce.class))),
+      @ApiResponse(responseCode = "404", description = "Entity or its relation not found")
+  })
+  @PostMapping(value = "/{uid}/setManyToOneCreator")
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'UPDATE_PRODUIT')")
-  public AnnonceRestResponse addOneToManyAnnonce(@PathVariable(name = "uid") final String uid,
-                                                         @PathVariable(name = "annonceUid") final String annonceUid)  {
+  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'UPDATE_ANNONCE')")
+  public AnnonceRestResponse setManyToOneCreator(
+          @Parameter(description = "Uid of the entity", required = true) @PathVariable(name = "uid") final String uid,
+          @Parameter(description = "Uid of the relation to associate", required = true) @RequestParam(name = "creatorUid") final String creatorUid) {
 
-    AnnonceRestResponse response = new AnnonceRestResponse();
+      Annonce entity = getPersistable(uid, Annonce.class);
+      UserAccount roleB = getPersistable(creatorUid, UserAccount.class);
+      entity.setCreator(persistableService.refresh(roleB));
+      persistableService.merge(entity);
 
-    Produit entity = getPersistable(uid, Produit.class);
-    Annonce roleB = getPersistable(annonceUid, Annonce.class);
-
-    service.addAnnonce(entity, roleB);
-    return response.populateFromEntity(roleB);
+      return new AnnonceRestResponse().populateFromEntity(entity);
   }
 
-  @DeleteMapping(value = "/{uid}/oneToManyAnnonce/{annonceUid}")
+
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "Relation removed"),
+      @ApiResponse(responseCode = "404", description = "Relation not found")
+  })
+  @DeleteMapping(value = "/{uid}/removeManyToOneCreator")
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'DELETE_PRODUIT')")
-  public SuccessRestResponse removeOneToManyAnnonce(@PathVariable(name = "uid") final String uid,
-                                                        @PathVariable(name = "annonceUid") final String annonceUid)  {
+  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'DELETE_ANNONCE')")
+  public SuccessRestResponse removeManyToOneCreator(
+          @Parameter(description = "Uid of the entity", required = true) @PathVariable(name = "uid") final String uid) {
 
-    Produit entity = getPersistable(uid, Produit.class);
-    Annonce roleB = getPersistable(annonceUid, Annonce.class);
+      Annonce entity = getPersistable(uid, Annonce.class);
+      entity.setCreator(null);
+      persistableService.merge(entity);
 
-    service.removeAnnonce(entity, roleB);
-    return SuccessRestResponse.newOne();
+      return SuccessRestResponse.newOne();
   }
 
-  @GetMapping(value = "/{uid}/oneToManyAnnonce")
-  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'READ_PRODUIT')")
-  public ListRestResponse<AnnonceListRestModel> getAllOneToManyAnnonce(@PathVariable(name = "uid") final String uid)  {
 
-    Produit entity = getPersistable(uid, Produit.class);
-    List<Annonce> roleBs = service.getAllAnnonce(entity);
-    return new ListRestResponse<>(roleBs, AnnonceListRestModel.class);
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "Success processing"),
+      @ApiResponse(responseCode = "404", description = "Not found")
+  })
+  @GetMapping(value = "/{uid}/getManyToOneCreator")
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_ANNONCE', 'READ_ANNONCE')")
+  public UserAccountRestResponse getManyToOneCreator(
+          @Parameter(description = "Encoded comment identifier", required = true) @PathVariable(name = "uid") final String uid) {
+      Annonce entity = getPersistable(uid, Annonce.class);
+      UserAccount roleB = entity.getCreator();
+      return new UserAccountRestResponse().populateFromEntity(roleB);
   }
-
-  @GetMapping(value = "/{uid}/oneToManyAnnonceNavigate")
-  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'READ_PRODUIT')")
-  public ListRestResponse<AnnonceListRestModel> navigateOneToManyAnnonce(@PathVariable(name = "uid") final String uid,
-                                                  @RequestParam("page") int page,
-                                                  @RequestParam("pageSize") int pageSize)  {
-
-    Produit entity = getPersistable(uid, Produit.class);
-
-    PageRequest pageRequest = new PageRequest(page, pageSize);
-    PageResult pageResult = service.navigateAnnonce(entity, pageRequest);
-    return new ListRestResponse<>(pageResult, AnnonceListRestModel.class);
-  }
-
-  @GetMapping(value = "/oneToManyAnnonceInverse")
-  @PreAuthorize("hasAnyAuthority('ADMIN_ENTITY_PRODUIT', 'READ_PRODUIT')")
-  public ProduitRestResponse oneToManyAnnonceInverse(@RequestParam(name = "annonceUid") final String annonceUid)  {
-
-      ProduitRestResponse response = new ProduitRestResponse();
-
-      Annonce entity = getPersistable(annonceUid, Annonce.class);
-      Produit roleA = service.getOneToManyAnnonceInverse(entity);
-      return response.populateFromEntity(roleA);
-  }
+      
+      
+  
 
 }

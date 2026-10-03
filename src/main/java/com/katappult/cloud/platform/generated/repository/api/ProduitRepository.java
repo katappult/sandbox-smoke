@@ -17,6 +17,10 @@ public interface ProduitRepository {
     PageResult search(ProduitQuerySpec querySpec, PageRequest pageRequest);
 
 
+    PageResult navigateAnnonce(Produit entity, PageRequest pageRequest);
+
+    Produit getOneToManyAnnonceInverse(Annonce entity);
+
 
     Produit findById(Long id);
 
