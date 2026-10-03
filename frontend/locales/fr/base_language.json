@@ -789,5 +789,25 @@
   "admin.inactive": "Inactif",
   "common.actions": "Actions",
   "common.save": "Enregistrer",
-  "validation.required": "Ce champ est requis"
+  "validation.required": "Ce champ est requis",
+
+  "menu.annonces_moderation": "Modération des annonces",
+  "admin.annonces_title": "Modération des annonces",
+  "admin.annonces_desc": "Validez ou refusez les annonces des vendeurs.",
+  "annonces.title": "Titre",
+  "annonces.status": "Statut",
+  "annonces.status.pending": "En attente",
+  "annonces.status.accepted": "Validée",
+  "annonces.status.refused": "Refusée",
+  "annonces.status.unknown": "Inconnu",
+  "annonces.description": "Description",
+  "annonces.price": "Prix",
+  "annonces.photo": "Photo",
+  "annonces.product": "Produit",
+  "annonces.actions": "Actions",
+  "annonces.validate": "Valider",
+  "annonces.refuse": "Refuser",
+  "annonces.actionSuccess": "Action effectuée avec succès",
+  "annonces.actionFailed": "Échec de l'action",
+  "annonces.missingId": "Identifiant manquant pour l'annonce"
 }
