@@ -767,5 +767,23 @@
   "catalog.empty_announces_desc": "Aucune annonce validée pour ce produit.",
   "catalog.announces_title": "Annonces validées",
   "catalog.not_found_title": "Élément introuvable",
-  "catalog.not_found_desc": "L'élément demandé n'existe pas ou a été retiré."
+  "catalog.not_found_desc": "L'élément demandé n'existe pas ou a été retiré.",
+
+  "annonce.create.success": "Annonce créée",
+  "annonce.create.success_desc": "Votre annonce a été créée avec succès.",
+  "annonce.create.error_access_denied": "Accès refusé",
+  "annonce.create.error_inactive": "Votre compte est inactif",
+  "annonce.create.error_generic": "Impossible de créer l'annonce. Veuillez réessayer.",
+  "annonce.form.titre": "Titre",
+  "annonce.form.titre_placeholder": "Ex : Tomates bio fraîches",
+  "annonce.form.description": "Description",
+  "annonce.form.description_placeholder": "Décrivez votre produit...",
+  "annonce.form.prix": "Prix",
+  "annonce.form.prix_placeholder": "0.00",
+  "annonce.form.produit": "Produit",
+  "annonce.form.produit_placeholder": "Sélectionnez un produit",
+  "annonce.form.photo": "Photo",
+  "annonce.form.photo_hint": "Optionnel. Vous pouvez ajouter une photo après la création.",
+  "annonce.form.submit": "Créer l'annonce",
+  "annonce.form.required": "Ce champ est requis"
 }

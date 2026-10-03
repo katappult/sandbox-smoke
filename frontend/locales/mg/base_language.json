@@ -751,5 +751,23 @@
   "catalog.empty_announces_desc": "Tsy misy tolotra voamarina ho an'ity vokatra ity.",
   "catalog.announces_title": "Toloraim-panatanterahana",
   "catalog.not_found_title": "Tsy hita ilay zavatra",
-  "catalog.not_found_desc": "Tsy misy ilay zavatra angatahina na efa nesorina."
+  "catalog.not_found_desc": "Tsy misy ilay zavatra angatahina na efa nesorina.",
+
+  "annonce.create.success": "Voaorina ny tolotra",
+  "annonce.create.success_desc": "Voaorina soa aman-tsara ny tolotrao.",
+  "annonce.create.error_access_denied": "Tsy nahazo alalana",
+  "annonce.create.error_inactive": "Tsy mavitrika ny kaontinao",
+  "annonce.create.error_generic": "Tsy afaka namorona ny tolotra. Andramo indray.",
+  "annonce.form.titre": "Lohateny",
+  "annonce.form.titre_placeholder": "Ohatra: Voatabia organika vaovao",
+  "annonce.form.description": "Famaritana",
+  "annonce.form.description_placeholder": "Famaritana ny vokatrao...",
+  "annonce.form.prix": "Vidiny",
+  "annonce.form.prix_placeholder": "0.00",
+  "annonce.form.produit": "Vokatra",
+  "annonce.form.produit_placeholder": "Misafidiana vokatra",
+  "annonce.form.photo": "Sary",
+  "annonce.form.photo_hint": "Tsy voatery. Azonao atao ny manampy sary aorian'ny famoronana.",
+  "annonce.form.submit": "Mamorona tolotra",
+  "annonce.form.required": "Takiana ity saha ity"
 }
