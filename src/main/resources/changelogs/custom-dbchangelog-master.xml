@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="dev">
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="EVENT_NAME" value="PRE_SET_STATE_ANNONCE"/>
+            <column name="BUSINESSRULE_IDENTIFIER" value="AnnonceLifecycleTransitionRule"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Annonce"/>
+            <column name="BR_RULE" value="AnnonceLifecycleTransitionRule"/>
+            <column name="ISVETOABLE" valueNumeric="1"/>
+            <column name="BR_ORDER" valueNumeric="10"/>
+            <column name="CONTAINER_OID" valueNumeric="1"/>
+            <column name="DESCRIPTION" value="Restreint les transitions du cycle de vie : NEW -> ACCEPTED / NEW -> REFUSED"/>
+            <column name="ISACTIVE" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

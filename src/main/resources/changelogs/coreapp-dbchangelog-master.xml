@@ -6,6 +6,6 @@
 
     <include file="/changelogs/katappult-core-dbchangelog-master.xml"/>
     <include file="changelogs/_generated/generated-dbchangelog-master.xml"/>
+    <include file="changelogs/custom-dbchangelog-master.xml"/>
 
 </databaseChangeLog>
-
