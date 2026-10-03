@@ -1,0 +1,48 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20250101000001-annonce-business-rules" author="dev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="T_BUSINESS_RULES"/>
+        </preConditions>
+
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="BR_RULE" value="com.katappult.cloud.platform.rules.AnnonceCreationRule"/>
+            <column name="EVENT_NAME" value="PRE_CREATE_ANNONCE"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Annonce"/>
+            <column name="ISVETOABLE" value="1"/>
+            <column name="TRANSAC_PHASE" value="BEFORE_COMMIT"/>
+            <column name="BR_ORDER" value="10"/>
+        </insert>
+
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="BR_RULE" value="com.katappult.cloud.platform.rules.AnnonceTransitionsRule"/>
+            <column name="EVENT_NAME" value="PRE_SET_STATE"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Annonce"/>
+            <column name="ISVETOABLE" value="1"/>
+            <column name="TRANSAC_PHASE" value="BEFORE_COMMIT"/>
+            <column name="BR_ORDER" value="20"/>
+        </insert>
+
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="BR_RULE" value="com.katappult.cloud.platform.rules.ModerationAccessRule"/>
+            <column name="EVENT_NAME" value="PRE_UPDATE_CATEGORIE"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Categorie"/>
+            <column name="ISVETOABLE" value="1"/>
+            <column name="TRANSAC_PHASE" value="BEFORE_COMMIT"/>
+            <column name="BR_ORDER" value="30"/>
+        </insert>
+
+        <insert tableName="T_BUSINESS_RULES">
+            <column name="BR_RULE" value="com.katappult.cloud.platform.rules.ModerationAccessRule"/>
+            <column name="EVENT_NAME" value="PRE_UPDATE_PRODUIT"/>
+            <column name="BUSINESS_CLASS" value="com.katappult.cloud.platform.generated.model.Produit"/>
+            <column name="ISVETOABLE" value="1"/>
+            <column name="TRANSAC_PHASE" value="BEFORE_COMMIT"/>
+            <column name="BR_ORDER" value="40"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

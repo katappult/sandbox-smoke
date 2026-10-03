@@ -7,5 +7,7 @@
     <include file="/changelogs/katappult-core-dbchangelog-master.xml"/>
     <include file="changelogs/_generated/generated-dbchangelog-master.xml"/>
 
-</databaseChangeLog>
+    <include file="changelogs/migrations/20250101000000-annonce-lifecycle.xml"/>
+    <include file="changelogs/migrations/20250101000001-annonce-business-rules.xml"/>
 
+</databaseChangeLog>
