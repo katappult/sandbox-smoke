@@ -14,6 +14,8 @@ export const groups = [
             {key: "users", labelKey: "menu.users", link: "/admin/users", icon: "group"},
             {key: "roles", labelKey: "menu.roles", link: "/admin/roles", icon: "security"},
             {key: "groups", labelKey: "menu.groups", link: "/admin/groups", icon: "group_work"},
+            {key: "categories", labelKey: "menu.categories", link: "/admin/categories", icon: "category"},
+            {key: "products", labelKey: "menu.products", link: "/admin/products", icon: "inventory_2"},
             {key: "medias", labelKey: "menu.medias", link: "/admin/medias", icon: "photo"},
             {key: "dataImport", labelKey: "menu.data_import", link: "/admin/import", icon: "upload_file"},
             {key: "systemPreferences", labelKey: "menu.system_preferences", link: "/admin/preferences", icon: "tune"},
