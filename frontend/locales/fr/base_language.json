@@ -723,7 +723,6 @@
   "status.REQUEST_IN_PROGRESS_action": "En cours",
   "status.OBSOLETE_action": "Obsolète",
   "status.PRE_RELEASE_action": "En attente de validation",
-  "status.IN_WORK_action": "Réserver",
   "status.RELEASED_action": "Valider",
   "status.VALID_MEMBER_action": "Membre",
   "status.PROMOTE_action": "Promouvoir le statut",
@@ -752,5 +751,21 @@
 
   "auth.login_page_title": "Connexion",
   "auth.lostpass_page_title": "Mot de passe oublié",
-  "auth.register_page_title": "Créer un compte"
+  "auth.register_page_title": "Créer un compte",
+  "catalog.no_image": "Aucune image",
+  "catalog.active": "Actif",
+  "catalog.featured": "Mise en avant",
+  "catalog.error_title": "Erreur",
+  "catalog.error_desc": "Impossible de charger le catalogue.",
+  "catalog.empty_categories_title": "Aucune catégorie",
+  "catalog.empty_categories_desc": "Les catégories seront bientôt disponibles.",
+  "catalog.categories_title": "Catégories",
+  "catalog.empty_products_title": "Aucun produit",
+  "catalog.empty_products_desc": "Aucun produit dans cette catégorie.",
+  "catalog.products_title": "Produits",
+  "catalog.empty_announces_title": "Aucune annonce",
+  "catalog.empty_announces_desc": "Aucune annonce validée pour ce produit.",
+  "catalog.announces_title": "Annonces validées",
+  "catalog.not_found_title": "Élément introuvable",
+  "catalog.not_found_desc": "L'élément demandé n'existe pas ou a été retiré."
 }

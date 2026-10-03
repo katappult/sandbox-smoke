@@ -735,5 +735,21 @@
 
   "auth.login_page_title": "Fidirana",
   "auth.lostpass_page_title": "Adino ny tenimiafina",
-  "auth.register_page_title": "Mamorona kaonty"
+  "auth.register_page_title": "Mamorona kaonty",
+  "catalog.no_image": "Tsy misy sary",
+  "catalog.active": "Mavitrika",
+  "catalog.featured": "Nasongadina",
+  "catalog.error_title": "Hadisoana",
+  "catalog.error_desc": "Tsy azo nampidirina ny katalaogy.",
+  "catalog.empty_categories_title": "Tsy misy sokajy",
+  "catalog.empty_categories_desc": "Hisokajy ho hita tsy ho ela.",
+  "catalog.categories_title": "Sokajy",
+  "catalog.empty_products_title": "Tsy misy vokatra",
+  "catalog.empty_products_desc": "Tsy misy vokatra ao amin'ity sokajy ity.",
+  "catalog.products_title": "Vokatra",
+  "catalog.empty_announces_title": "Tsy misy tolotra",
+  "catalog.empty_announces_desc": "Tsy misy tolotra voamarina ho an'ity vokatra ity.",
+  "catalog.announces_title": "Toloraim-panatanterahana",
+  "catalog.not_found_title": "Tsy hita ilay zavatra",
+  "catalog.not_found_desc": "Tsy misy ilay zavatra angatahina na efa nesorina."
 }

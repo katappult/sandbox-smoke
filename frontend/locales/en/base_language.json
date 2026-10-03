@@ -749,6 +749,21 @@
 
   "auth.login_page_title": "Login",
   "auth.lostpass_page_title": "Forgot Password",
-  "auth.register_page_title": "Create Account"
-
+  "auth.register_page_title": "Create Account",
+  "catalog.no_image": "No image",
+  "catalog.active": "Active",
+  "catalog.featured": "Featured",
+  "catalog.error_title": "Error",
+  "catalog.error_desc": "Unable to load the catalog.",
+  "catalog.empty_categories_title": "No categories",
+  "catalog.empty_categories_desc": "Categories will be available soon.",
+  "catalog.categories_title": "Categories",
+  "catalog.empty_products_title": "No products",
+  "catalog.empty_products_desc": "No products in this category.",
+  "catalog.products_title": "Products",
+  "catalog.empty_announces_title": "No listings",
+  "catalog.empty_announces_desc": "No validated listings for this product.",
+  "catalog.announces_title": "Validated listings",
+  "catalog.not_found_title": "Item not found",
+  "catalog.not_found_desc": "The requested item does not exist or has been removed."
 }
