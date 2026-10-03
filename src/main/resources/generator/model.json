@@ -1,0 +1,4 @@
+{
+"categorie.json":{"eventSuffix":"_CATEGORIE","restUri":"categorie","types":[],"multiIdentifiedTypes":[],"vetoableRules":[],"attributes":[],"oneToOne":[],"oneToMany":[],"manyToMany":[],"entity":{"name":"Categorie","table":"CATEGORIE","attributes":[{"id":"05f7ae25b53c","type":"String","name":"titre","uiDisplayName":"Titre","column":"titre","uiComponent":"text","required":"true","uiDisplayInDatatable":"true","uiDisplayInAdd":"true"},{"id":"e52fd1a88cb1","type":"Text","name":"description","uiDisplayName":"Description","column":"description","uiComponent":"textarea","required":"false","uiDisplayInDatatable":"true","uiDisplayInAdd":"true"}],"masterAttributes":[],"knoers":["Thumbed"]},"package":"com.katappult.cloud.platform.generated"}, 
+"generator-config.json": {"entityPackage":"com.katappult.cloud.platform.generated","entities":[{"path":"categorie.json","order":1}]}
+}
