@@ -20,6 +20,14 @@ export const groups = [
         ],
     },
     {
+        labelKey: "menu.group_catalogue",
+        requiredRoles: ADMIN_ROLES,
+        children: [
+            {key: "categories", labelKey: "menu.categories", link: "/admin/categories", icon: "category"},
+            {key: "produits", labelKey: "menu.produits", link: "/admin/produits", icon: "inventory_2"},
+        ],
+    },
+    {
         labelKey: "menu.group_navigation",
         children: [
 
