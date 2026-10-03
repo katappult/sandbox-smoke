@@ -779,6 +779,31 @@
 
   "auth.login_page_title": "Login",
   "auth.lostpass_page_title": "Forgot Password",
-  "auth.register_page_title": "Create Account"
+  "auth.register_page_title": "Create Account",
 
+  "menu.moderation": "Moderation",
+  "admin.annonces_title": "Manage ads",
+  "admin.annonces_desc": "Validate or refuse ads waiting for publication.",
+  "moderation.col_photo": "Photo",
+  "moderation.col_titre": "Title",
+  "moderation.col_prix": "Price",
+  "moderation.col_produit": "Product",
+  "moderation.col_categorie": "Category",
+  "moderation.col_statut": "Status",
+  "moderation.col_actions": "Actions",
+  "moderation.filter_all": "All",
+  "moderation.filter_pending": "Pending",
+  "moderation.filter_validated": "Validated",
+  "moderation.filter_refused": "Refused",
+  "moderation.valider": "Validate",
+  "moderation.refuser": "Refuse",
+  "moderation.confirm_valider_title": "Validate this ad?",
+  "moderation.confirm_refuser_title": "Refuse this ad?",
+  "moderation.confirm_desc": "Move the ad to \"{{target}}\"?",
+  "moderation.forbidden": "You do not have permission to perform this action.",
+  "moderation.detail_title": "Ad details",
+  "moderation.detail_description": "Description",
+  "moderation.detail_produit": "Product",
+  "moderation.detail_categorie": "Category",
+  "moderation.detail_prix": "Price"
 }

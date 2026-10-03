@@ -715,6 +715,7 @@
   "status.ACCEPTED": "Voarakotra",
   "status.REFUSED": "Nandavana",
   "status.CLOSED": "Vokatony",
+
   "status.NEW_action": "Vaovao",
   "status.DRAFT_action": "Brouillon",
   "status.ARCHIVED_action": "Harakitra",
@@ -765,5 +766,31 @@
 
   "auth.login_page_title": "Fidirana",
   "auth.lostpass_page_title": "Adino ny tenimiafina",
-  "auth.register_page_title": "Mamorona kaonty"
+  "auth.register_page_title": "Mamorona kaonty",
+
+  "menu.moderation": "Fanaraha-maso",
+  "admin.annonces_title": "Fanaraha-maso ny doka",
+  "admin.annonces_desc": "Hamarino na lavo ny doka miandry famoahana.",
+  "moderation.col_photo": "Sary",
+  "moderation.col_titre": "Lohateny",
+  "moderation.col_prix": "Vidiny",
+  "moderation.col_produit": "Vokatra",
+  "moderation.col_categorie": "Sokajy",
+  "moderation.col_statut": "Toetry",
+  "moderation.col_actions": "Asa",
+  "moderation.filter_all": "Rehetra",
+  "moderation.filter_pending": "Am-piandrasana",
+  "moderation.filter_validated": "Voamarina",
+  "moderation.filter_refused": "Nolavina",
+  "moderation.valider": "Hamarino",
+  "moderation.refuser": "Lavo",
+  "moderation.confirm_valider_title": "Hamarino ity doka ity?",
+  "moderation.confirm_refuser_title": "Lavo ity doka ity?",
+  "moderation.confirm_desc": "Hampifindra ny doka any amin'ny «{{target}}»?",
+  "moderation.forbidden": "Tsy manana alalana hanao ity asa ity ianao.",
+  "moderation.detail_title": "Antsipirian'ny doka",
+  "moderation.detail_description": "Famaritana",
+  "moderation.detail_produit": "Vokatra",
+  "moderation.detail_categorie": "Sokajy",
+  "moderation.detail_prix": "Vidiny"
 }

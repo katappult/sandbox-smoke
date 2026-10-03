@@ -782,5 +782,31 @@
 
   "auth.login_page_title": "Connexion",
   "auth.lostpass_page_title": "Mot de passe oublié",
-  "auth.register_page_title": "Créer un compte"
+  "auth.register_page_title": "Créer un compte",
+
+  "menu.moderation": "Modération",
+  "admin.annonces_title": "Modération des annonces",
+  "admin.annonces_desc": "Validez ou refusez les annonces en attente de publication.",
+  "moderation.col_photo": "Photo",
+  "moderation.col_titre": "Titre",
+  "moderation.col_prix": "Prix",
+  "moderation.col_produit": "Produit",
+  "moderation.col_categorie": "Catégorie",
+  "moderation.col_statut": "Statut",
+  "moderation.col_actions": "Actions",
+  "moderation.filter_all": "Toutes",
+  "moderation.filter_pending": "En attente",
+  "moderation.filter_validated": "Validées",
+  "moderation.filter_refused": "Refusées",
+  "moderation.valider": "Valider",
+  "moderation.refuser": "Refuser",
+  "moderation.confirm_valider_title": "Valider l’annonce ?",
+  "moderation.confirm_refuser_title": "Refuser l’annonce ?",
+  "moderation.confirm_desc": "Passer l’annonce à « {{target}} » ?",
+  "moderation.forbidden": "Vous n’avez pas les droits pour effectuer cette action.",
+  "moderation.detail_title": "Détail de l’annonce",
+  "moderation.detail_description": "Description",
+  "moderation.detail_produit": "Produit",
+  "moderation.detail_categorie": "Catégorie",
+  "moderation.detail_prix": "Prix"
 }

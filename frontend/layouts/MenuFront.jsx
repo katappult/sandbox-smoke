@@ -1,7 +1,7 @@
 import {useRouter} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import {Menu} from "antd";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {serviceConfig} from "@/services/utils/service.config";
 
 const ADMIN_ROLES = ["ROLE_ADMIN", "ROLE_SUPERADMIN"];
@@ -17,6 +17,7 @@ export const groups = [
             {key: "medias", labelKey: "menu.medias", link: "/admin/medias", icon: "photo"},
             {key: "dataImport", labelKey: "menu.data_import", link: "/admin/import", icon: "upload_file"},
             {key: "systemPreferences", labelKey: "menu.system_preferences", link: "/admin/preferences", icon: "tune"},
+            {key: "annonces", labelKey: "menu.moderation", link: "/admin/annonces", icon: "fact_check"},
         ],
     },
     {
