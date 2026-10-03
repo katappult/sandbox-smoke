@@ -1,5 +1,6 @@
 package com.katappult.cloud.platform.rest;
 
+import com.katappult.cloud.platform.rest.customModel.AnnonceSummaryDto;
 import com.katappult.cloud.platform.rest.dto.AnnonceDto;
 import com.katappult.cloud.platform.rest.dto.CreateAnnonceRequest;
 import com.katappult.cloud.platform.services.custom.CustomAnnonceService;
@@ -9,9 +10,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/annonce")
@@ -42,5 +48,16 @@ public class CustomAnnonceServiceFacade extends BaseKatappultRestService {
     @Operation(summary = "Refuser une annonce")
     public ResponseEntity<RestResponse<AnnonceDto>> refuser(@PathVariable String uid) {
         return ok(customAnnonceService.refuser(uid));
+    }
+
+    @GetMapping("/validated")
+    @PreAuthorize("permitAll()")
+    @Operation(summary = "Liste publique des annonces validées")
+    @ApiResponse(responseCode = "200", description = "Liste des annonces validées")
+    public ResponseEntity<RestResponse<List<AnnonceSummaryDto>>> listValidated(
+            @PageableDefault(size = 20, sort = "persistenceInfo.createDate", direction = Sort.Direction.DESC)
+            Pageable pageable
+    ) {
+        return ok(customAnnonceService.listValidated(pageable).getContent());
     }
 }
